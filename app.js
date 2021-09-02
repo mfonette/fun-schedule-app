@@ -20,7 +20,7 @@ newSchedule.addEventListener("click", newScheduleFunction);
 activityDrop.addEventListener("click", activityDropFunction());
 
 activityDropFunction() {
-    localStorage.getItem("funacivities");
+    localStorage.getItem("funactivities");
 }
 
 // if any input field is empty, regFunction doesnt go through
@@ -35,42 +35,42 @@ function addMoreFunAct() {
 
 function regFunction() {
     console.log("reg function is working")
-    let funThings = funact.value
+    let funThings = funact.value;
     // console.log(funThings.split(','))
-    allFunAct.push(funThings)
+    allFunAct.push(funThings);
     // funThings.toString().forEach(funThing => {
     //     // localStorage.setItem("allFun", funThing);
     //     console.log(funThing)
     // });
-    console.log(allFunAct)
+    console.log(allFunAct);
     funact.value = " ";
     // funThings = " ";
 }
 
 function dayOne() {
-    let stringFun = allFunAct.toString().split(',')
+    let stringFun = allFunAct.toString().split(',');
 
-    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(activity1)
+    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    console.log(activity1);
 }
 
 function dayTwo() {
-    let stringFun = allFunAct.toString().split(',')
+    let stringFun = allFunAct.toString().split(',');
 
-    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(schedule1)
+    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    console.log(schedule1);
 
-    var idx = stringFun.indexOf(activity1)
-    console.log(idx)
+    var idx = stringFun.indexOf(activity1);
+    console.log(idx);
 
     stringFun.splice(idx, 1);
-    console.log(stringFun)
+    console.log(stringFun);
 
-    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(activity2)
+    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    console.log(activity2);
 
     // if (schedule2 != schedule1){
-     console.log(activity1 + " " + activity2)
+     console.log(activity1 + " " + activity2);
     // }
     // else{
     //     console.log('sths wrong')
@@ -80,31 +80,31 @@ function dayTwo() {
 }
 
 function dayThree() {
-    let stringFun = allFunAct.toString().split(',')
+    let stringFun = allFunAct.toString().split(',');
 
-    let activity3 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(activity3)
+    let activity3 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    console.log(activity3);
 
-    let idx2 = stringFun.indexOf(activity3)
-    console.log(idx2)
+    let idx2 = stringFun.indexOf(activity3);
+    console.log(idx2);
 
     stringFun.splice(idx2, 1);
-    console.log(stringFun)
+    console.log(stringFun);
 
-    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(activity1)
+    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    console.log(activity1);
 
     let idx = stringFun.indexOf(schedule1);
-    console.log(idx)
+    console.log(idx);
 
     stringFun.splice(idx, 1);
-    console.log(stringFun)
+    console.log(stringFun);
 
-    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(activity2)
+    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    console.log(activity2);
 
 
-    console.log(activity3 + activity1 + activity2)
+    console.log(activity3 + activity1 + activity2);
 }
 
 function newScheduleFunction() {
