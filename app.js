@@ -10,28 +10,32 @@ let allFunAct = [];
 let isChecked1 = document.querySelector(".checkbox1");
 let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
-let activityDrop = document.querySelector("#activityDropDown");
+let allActivities= document.querySelector("#activityDrop");
 
 
 
 // onclick, the input from funact is gotten and then pushed to allFunAct array
 reg.addEventListener("click", regFunction);
 newSchedule.addEventListener("click", newScheduleFunction);
-activityDrop.addEventListener("click", activityDropFunction());
+allActivities.addEventListener("click", allActivityFunction);
 
-activityDropFunction() {
-    localStorage.getItem("funactivities");
-}
+
 
 // if any input field is empty, regFunction doesnt go through
 
 // Add users fun activities to local storage
-localStorage.setItem("funactivities", JSON.stringify(allFunAct));
+// localStorage.setItem("funactivities", JSON.stringify(allFunAct));
 
-function addMoreFunAct() {
-    let moreFunAct = localStorage.getItem("")
+// function addMoreFunAct() {
+//     let FunAct = localStorage.getItem("activities");
+//     if (FunAct == null) {
+//         moreFunActObj = []
+//     }
+//     else {
+//         moreFunAct = JSON.parse()
+//     }
 
-}
+// }
 
 function regFunction() {
     console.log("reg function is working")
@@ -42,9 +46,38 @@ function regFunction() {
     //     // localStorage.setItem("allFun", funThing);
     //     console.log(funThing)
     // });
+    localStorage.setItem("activities", JSON.stringify(allFunAct).split(','));
     console.log(allFunAct);
     funact.value = " ";
     // funThings = " ";
+}
+
+function allActivityFunction() {
+    let fun = localStorage.getItem("activities");
+    if (fun == null) {
+        funObj = []
+    }
+    else {
+        funObj = JSON.parse(fun)
+        console.log(funObj)
+    }
+    let html = "";
+    funObj.forEach(element => {
+        html += `
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+           <li role="presentation" class="divider">${element}</li>
+        </ul>
+        `
+    });
+    if (funObj.length != 0) {
+        console.log(funObj.length)
+        allActivities.innerHTML = html
+        console.log(allActivities)
+    }
+    else{
+        allActivities.innerHTML = `click on add button to add some activities`
+    }
+
 }
 
 function dayOne() {
