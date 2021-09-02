@@ -10,19 +10,33 @@ let allFunAct = [];
 let isChecked1 = document.querySelector(".checkbox1");
 let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
+let activityDrop = document.querySelector("#activityDropDown");
 
 
 
 // onclick, the input from funact is gotten and then pushed to allFunAct array
 reg.addEventListener("click", regFunction);
 newSchedule.addEventListener("click", newScheduleFunction);
+activityDrop.addEventListener("click", activityDropFunction());
+
+activityDropFunction() {
+    localStorage.getItem("funacivities");
+}
 
 // if any input field is empty, regFunction doesnt go through
+
+// Add users fun activities to local storage
+localStorage.setItem("funactivities", JSON.stringify(allFunAct));
+
+function addMoreFunAct() {
+    let moreFunAct = localStorage.getItem("")
+
+}
 
 function regFunction() {
     console.log("reg function is working")
     let funThings = funact.value
-    console.log(funThings)
+    // console.log(funThings.split(','))
     allFunAct.push(funThings)
     // funThings.toString().forEach(funThing => {
     //     // localStorage.setItem("allFun", funThing);
@@ -33,28 +47,90 @@ function regFunction() {
     // funThings = " ";
 }
 
+function oneDay() {
+    let stringFun = allFunAct.toString().split(',')
+
+    let schedule1 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(schedule1)
+}
+
+function twoDays() {
+    let stringFun = allFunAct.toString().split(',')
+
+    let schedule1 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(schedule1)
+
+    var idx = stringFun.indexOf(schedule1)
+    console.log(idx)
+
+    stringFun.splice(idx, 1);
+    console.log(stringFun)
+
+    let schedule2 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(schedule2)
+
+    // if (schedule2 != schedule1){
+     console.log(schedule1 + " " + schedule2)
+    // }
+    // else{
+    //     console.log('sths wrong')
+    // }
+    // console.log(allFunAct.toString().split(','))
+    // console.log(allFunAct.toString().split(',').length)
+}
+
+function threeDays() {
+    let stringFun = allFunAct.toString().split(',')
+
+    let schedule3 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(schedule3)
+
+    let idx2 = stringFun.indexOf(schedule3)
+    console.log(idx2)
+
+    stringFun.splice(idx2, 1);
+    console.log(stringFun)
+
+    let schedule1 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(schedule1)
+
+    var idx = stringFun.indexOf(schedule1)
+    console.log(idx)
+
+    stringFun.splice(idx, 1);
+    console.log(stringFun)
+
+    let schedule2 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(schedule2)
+
+
+    console.log(schedule3 + schedule1 + schedule2)
+}
+
 function newScheduleFunction() {
     if ( isChecked1.checked && isChecked2.checked == false && isChecked3.checked == false ){
-        console.log('friday only')
-        // let schedule = allFunAct[Math.floor(Math.random()*allFunAct.length)]
-        console.log(allFunAct.length)
-        // console.log(schedule);
+        oneDay();
     }
     else if (isChecked1.checked== false && isChecked2.checked && isChecked3.checked== false ){
-        console.log("saturday only")
+        oneDay();
     }
     else if (isChecked1.checked== false && isChecked2.checked == false && isChecked3.checked){
-        console.log("sunday only")
+        oneDay();
     }
-    else if (isChecked1.checked && isChecked2.checked && isChecked3.checked == false){  console.log('friday and saturday',)}
-    else if (isChecked1.checked && isChecked2.checked== false && isChecked3.checked) { console.log('Get first: ', navbar[0].textContent,navbar[2].textContent)}
-    else if (isChecked1.checked== false && isChecked2.checked && isChecked3.checked) { console.log('Get first: ', navbar[1].textContent,navbar[2].textContent)}
+    else if (isChecked1.checked && isChecked2.checked && isChecked3.checked == false){ 
+        twoDays();
+    }
+    else if (isChecked1.checked && isChecked2.checked== false && isChecked3.checked) { 
+        twoDays();
+     }
+    else if (isChecked1.checked== false && isChecked2.checked && isChecked3.checked) { 
+        twoDays();
+    }
     else if(isChecked1.checked && isChecked2.checked && isChecked3.checked){
-        console.log('Get first: ', navbar[0].textContent, navbar[1].textContent, navbar[2].textContent)
+        threeDays();
     }
     else{
        console.log('check a box please')
     }
-
-  
 }
+    
