@@ -47,30 +47,30 @@ function regFunction() {
     // funThings = " ";
 }
 
-function oneDay() {
+function dayOne() {
     let stringFun = allFunAct.toString().split(',')
 
-    let schedule1 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(schedule1)
+    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(activity1)
 }
 
-function twoDays() {
+function dayTwo() {
     let stringFun = allFunAct.toString().split(',')
 
-    let schedule1 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)]
     console.log(schedule1)
 
-    var idx = stringFun.indexOf(schedule1)
+    var idx = stringFun.indexOf(activity1)
     console.log(idx)
 
     stringFun.splice(idx, 1);
     console.log(stringFun)
 
-    let schedule2 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(schedule2)
+    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(activity2)
 
     // if (schedule2 != schedule1){
-     console.log(schedule1 + " " + schedule2)
+     console.log(activity1 + " " + activity2)
     // }
     // else{
     //     console.log('sths wrong')
@@ -79,55 +79,55 @@ function twoDays() {
     // console.log(allFunAct.toString().split(',').length)
 }
 
-function threeDays() {
+function dayThree() {
     let stringFun = allFunAct.toString().split(',')
 
-    let schedule3 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(schedule3)
+    let activity3 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(activity3)
 
-    let idx2 = stringFun.indexOf(schedule3)
+    let idx2 = stringFun.indexOf(activity3)
     console.log(idx2)
 
     stringFun.splice(idx2, 1);
     console.log(stringFun)
 
-    let schedule1 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(schedule1)
+    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(activity1)
 
-    var idx = stringFun.indexOf(schedule1)
+    let idx = stringFun.indexOf(schedule1);
     console.log(idx)
 
     stringFun.splice(idx, 1);
     console.log(stringFun)
 
-    let schedule2 = stringFun[Math.floor(Math.random()*stringFun.length)]
-    console.log(schedule2)
+    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)]
+    console.log(activity2)
 
 
-    console.log(schedule3 + schedule1 + schedule2)
+    console.log(activity3 + activity1 + activity2)
 }
 
 function newScheduleFunction() {
-    if ( isChecked1.checked && isChecked2.checked == false && isChecked3.checked == false ){
-        oneDay();
+    if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
+        dayOne();
     }
-    else if (isChecked1.checked== false && isChecked2.checked && isChecked3.checked== false ){
-        oneDay();
+    else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
+        dayOne();
     }
-    else if (isChecked1.checked== false && isChecked2.checked == false && isChecked3.checked){
-        oneDay();
+    else if (isChecked1.checked === false && isChecked2.checked === false && isChecked3.checked){
+        dayOne();
     }
-    else if (isChecked1.checked && isChecked2.checked && isChecked3.checked == false){ 
-        twoDays();
+    else if (isChecked1.checked && isChecked2.checked && isChecked3.checked === false){ 
+        dayTwo();
     }
-    else if (isChecked1.checked && isChecked2.checked== false && isChecked3.checked) { 
-        twoDays();
+    else if (isChecked1.checked && isChecked2.checked === false && isChecked3.checked) { 
+        dayTwo();
      }
-    else if (isChecked1.checked== false && isChecked2.checked && isChecked3.checked) { 
-        twoDays();
+    else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked) { 
+        dayTwo();
     }
     else if(isChecked1.checked && isChecked2.checked && isChecked3.checked){
-        threeDays();
+        dayThree();
     }
     else{
        console.log('check a box please')
