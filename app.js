@@ -43,8 +43,8 @@ function allActivityFunction() {
     }
     else {
         funObj = JSON.parse(fun)
-        console.log(funObj)
-        console.log(funObj.toString().split(","))
+        // console.log(funObj)
+        // console.log(funObj.toString().split(","))
     }
     let html = "";
     let funStr = funObj.toString().split(",");
@@ -67,16 +67,39 @@ function allActivityFunction() {
 }
 
 function addActivityFunction() {
-    
-    // let fun = localStorage.getItem("activities");
-    // if (fun == null) {
-    //     funObj = []
-    // }
-    // else {
-    //     funObj = JSON.parse(fun)
-    //     console.log(funObj)
-    //     console.log(funObj.toString().split(","))
-    // }
+    addFun.value = "Enter"
+    let html = "";
+    html += `
+    <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
+    `
+    let li = document.createElement("Div");
+    li.innerHTML = html;
+    // console.log(li);
+    document.getElementById("added").appendChild(li);
+    // console.log(document.getElementById("added").appendChild(li));
+
+    let fun = localStorage.getItem("activities");
+    if (fun == null) {
+        funObj = []
+    }
+    else {
+        funObj = JSON.parse(fun)
+        // console.log(funObj)
+        // console.log(funObj.toString().split(","))
+    }
+    let text = document.getElementById("addFunActivities");
+    let textValue = text.value;
+    funObj.push(textValue);
+    console.log(funObj)
+    localStorage.setItem("activities", JSON.stringify(funObj));
+
+    textValue = "";
+
+    // if (addFun.value == "Enter"){
+    //     addFun.value = "Add more"
+    // } 
+
+    allActivityFunction();
 }
 
 function dayOne() {
