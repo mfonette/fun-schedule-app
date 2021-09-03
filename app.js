@@ -4,13 +4,13 @@ let pwd = document.querySelector("#passwd");
 let funact = document.querySelector("#funActivities");
 let reg = document.querySelector("#register");
 let newSchedule = document.querySelector("#newschedule");
-// let dropdown = document.querySelector(".dropdown-menu");
 let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 let allFunAct = [];
 let isChecked1 = document.querySelector(".checkbox1");
 let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
-let allActivities= document.querySelector("#activityDrop");
+let allActivities= document.querySelector("#activityDiv");
+let addFun = document.querySelector("#addActivities");
 
 
 
@@ -18,35 +18,19 @@ let allActivities= document.querySelector("#activityDrop");
 reg.addEventListener("click", regFunction);
 newSchedule.addEventListener("click", newScheduleFunction);
 allActivities.addEventListener("click", allActivityFunction);
-
-
+addFun.addEventListener("click", addActivityFunction);
 
 // if any input field is empty, regFunction doesnt go through
 
 // Add users fun activities to local storage
 // localStorage.setItem("funactivities", JSON.stringify(allFunAct));
 
-// function addMoreFunAct() {
-//     let FunAct = localStorage.getItem("activities");
-//     if (FunAct == null) {
-//         moreFunActObj = []
-//     }
-//     else {
-//         moreFunAct = JSON.parse()
-//     }
-
-// }
-
 function regFunction() {
     console.log("reg function is working")
     let funThings = funact.value;
     // console.log(funThings.split(','))
     allFunAct.push(funThings);
-    // funThings.toString().forEach(funThing => {
-    //     // localStorage.setItem("allFun", funThing);
-    //     console.log(funThing)
-    // });
-    localStorage.setItem("activities", JSON.stringify(allFunAct).split(','));
+    localStorage.setItem("activities", JSON.stringify(allFunAct));
     console.log(allFunAct);
     funact.value = " ";
     // funThings = " ";
@@ -60,24 +44,39 @@ function allActivityFunction() {
     else {
         funObj = JSON.parse(fun)
         console.log(funObj)
+        console.log(funObj.toString().split(","))
     }
     let html = "";
-    funObj.forEach(element => {
+    let funStr = funObj.toString().split(",");
+    funStr.forEach(element => {
         html += `
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
            <li role="presentation" class="divider">${element}</li>
-        </ul>
         `
     });
-    if (funObj.length != 0) {
-        console.log(funObj.length)
-        allActivities.innerHTML = html
-        console.log(allActivities)
+    let list = document.createElement("ul");
+    list.innerHTML = html;
+    // console.log(list)
+    if (funStr.length != 0) {
+        console.log(funStr.length)
+        document.getElementById("activity").appendChild(list);
+        console.log(document.getElementById("activity").appendChild(list))
     }
     else{
         allActivities.innerHTML = `click on add button to add some activities`
     }
+}
 
+function addActivityFunction() {
+    
+    // let fun = localStorage.getItem("activities");
+    // if (fun == null) {
+    //     funObj = []
+    // }
+    // else {
+    //     funObj = JSON.parse(fun)
+    //     console.log(funObj)
+    //     console.log(funObj.toString().split(","))
+    // }
 }
 
 function dayOne() {
