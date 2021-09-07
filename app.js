@@ -70,23 +70,26 @@ function showAllActivity() {
 }
 
 function addActivity() {
-    if (addFun.value = "Add") {
-        addFun.value = "Enter"
-        console.log(addFun.value)
+    if (addFun.textContent = "Add") {
+        addFun.textContent = "Enter"
+        console.log(addFun.textContent)
         // console.log(addFun.removeEventListener("click", addActivity))
         let html = `
         <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
         `;
        document.querySelector(".add").innerHTML = html;
     }
-    // addFun.removeEventListener("click", addActivity);
+    addFun.removeEventListener("click", addActivity);
+    addFun.addEventListener("click", showAddedActivity);
+    // showAddedActivity();
     // console.log(addFun.removeEventListener("click", addActivity))
 }
 
 
 function showAddedActivity() {
-    if (addFun.value = "Enter"){
-        addFun.value = "Add"
+    let text = document.getElementById("addFunActivities");
+    if (addFun.textContent = "Enter"){
+        addFun.textContent = "Add"
         let fun = localStorage.getItem("activities");
         if (fun == null) {
             funObj = []
@@ -96,7 +99,7 @@ function showAddedActivity() {
             // console.log(funObj)
             // console.log(funObj.toString().split(","))
         }
-    let text = document.getElementById("addFunActivities");
+    // let text = document.getElementById("addFunActivities");
     let textValue = text.value;
     console.log(textValue)
     if(textValue != "") {
@@ -105,9 +108,13 @@ function showAddedActivity() {
     }
     localStorage.setItem("activities", JSON.stringify(funObj));
     // document.querySelector(".add").innerHTML = " "
+    // text.style.display = "none";
    
     }
-    // document.querySelector(".add").innerHTML = ""
+    addFun.removeEventListener("click", showAddedActivity);
+    addFun.addEventListener("click", addActivity);
+    text.style.display = "none";
+    // document.querySelector(".add").style.display = "none";
     showAllActivity()
     // document.querySelector(".add").innerHTML = ""      
 }
