@@ -6,6 +6,7 @@ let reg = document.querySelector("#register");
 let newSchedule = document.querySelector("#newschedule");
 let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 let allFunAct = [];
+let funObj = [];
 let isChecked1 = document.querySelector(".checkbox1");
 let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
@@ -16,9 +17,10 @@ let addFun = document.querySelector("#addActivities");
 
 // onclick, the input from funact is gotten and then pushed to allFunAct array
 reg.addEventListener("click", regFunction);
-newSchedule.addEventListener("click", newScheduleFunction);
-allActivities.addEventListener("click", allActivityFunction);
-addFun.addEventListener("click", addActivityFunction);
+newSchedule.addEventListener("click", newScheduleFn);
+allActivities.addEventListener("click", showAllActivity);
+addFun.addEventListener("click", addActivity);
+// addFun.addEventListener("click", showAddedActivity);
 
 // if any input field is empty, regFunction doesnt go through
 
@@ -36,7 +38,7 @@ function regFunction() {
     // funThings = " ";
 }
 
-function allActivityFunction() {
+function showAllActivity() {
     let fun = localStorage.getItem("activities");
     if (fun == null) {
         funObj = []
@@ -58,6 +60,7 @@ function allActivityFunction() {
     // console.log(list)
     if (funStr.length != 0) {
         console.log(funStr.length)
+        document.getElementById("activity").innerHTML = ""
         document.getElementById("activity").appendChild(list);
         console.log(document.getElementById("activity").appendChild(list))
     }
@@ -66,40 +69,47 @@ function allActivityFunction() {
     }
 }
 
-function addActivityFunction() {
-    addFun.value = "Enter"
-    let html = "";
-    html += `
-    <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
-    `
-    let li = document.createElement("Div");
-    li.innerHTML = html;
-    // console.log(li);
-    document.getElementById("added").appendChild(li);
-    // console.log(document.getElementById("added").appendChild(li));
+function addActivity() {
+    if (addFun.value = "Add") {
+        addFun.value = "Enter"
+        console.log(addFun.value)
+        // console.log(addFun.removeEventListener("click", addActivity))
+        let html = `
+        <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
+        `;
+       document.querySelector(".add").innerHTML = html;
+    }
+    // addFun.removeEventListener("click", addActivity);
+    // console.log(addFun.removeEventListener("click", addActivity))
+}
 
-    let fun = localStorage.getItem("activities");
-    if (fun == null) {
-        funObj = []
-    }
-    else {
-        funObj = JSON.parse(fun)
-        // console.log(funObj)
-        // console.log(funObj.toString().split(","))
-    }
+
+function showAddedActivity() {
+    if (addFun.value = "Enter"){
+        addFun.value = "Add"
+        let fun = localStorage.getItem("activities");
+        if (fun == null) {
+            funObj = []
+        }
+        else {
+            funObj = JSON.parse(fun)
+            // console.log(funObj)
+            // console.log(funObj.toString().split(","))
+        }
     let text = document.getElementById("addFunActivities");
     let textValue = text.value;
-    funObj.push(textValue);
-    console.log(funObj)
+    console.log(textValue)
+    if(textValue != "") {
+        console.log(textValue)
+        funObj.push(textValue);
+    }
     localStorage.setItem("activities", JSON.stringify(funObj));
-
-    textValue = "";
-
-    // if (addFun.value == "Enter"){
-    //     addFun.value = "Add more"
-    // } 
-
-    allActivityFunction();
+    // document.querySelector(".add").innerHTML = " "
+   
+    }
+    // document.querySelector(".add").innerHTML = ""
+    showAllActivity()
+    // document.querySelector(".add").innerHTML = ""      
 }
 
 function dayOne() {
@@ -162,7 +172,7 @@ function dayThree() {
     console.log(activity3 + activity1 + activity2);
 }
 
-function newScheduleFunction() {
+function newScheduleFn() {
     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
         dayOne();
     }
