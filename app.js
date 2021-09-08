@@ -57,7 +57,7 @@ function showAllActivity() {
     funStr.forEach(function (element, index) {
         html += `
            <li role="presentation" class="divider">${element}</li>
-           <button id="" onclick="delEachActivity" class="note-btn">Delete Note</button>
+           <button id="${index}" onclick="delEachActivity(id)" class="btn">Delete Note</button>
         `
         console.log(index)
     });
