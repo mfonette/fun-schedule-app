@@ -81,19 +81,24 @@ function showAllActivity() {
 }
 
 function delEachActivity(index) {
+    console.log(typeof index, index);
 //    let delBtn = document.getElementById("delAct");
     let confirmDel = confirm("Delete this note?");
     if (confirmDel === true) {
     const actArr = getActivity();
+    console.log(actArr);
     // var idx = stringFun.indexOf(activity1);
     // console.log(idx);
-    actArr.splice(index, 1);
+    // actArr.splice(index, 1);
+    const filteredArr = actArr.filter((item, ind) => ind!== index)
+    
     // funObj.toString().remove(index)
-    console.log(index);
+    console.log(typeof index, index);
     console.log(actArr);
-    localStorage.setItem("activities", JSON.stringify(actArr));
+    localStorage.setItem("activities", JSON.stringify(filteredArr));
+    showAllActivity();
 }
-showAllActivity()
+// showAllActivity()
 }
 
 function addActivity() {
