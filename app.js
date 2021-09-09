@@ -30,6 +30,17 @@ addFun.addEventListener("click", addActivity);
 
 // Add users fun activities to local storage
 // localStorage.setItem("funactivities", JSON.stringify(allFunAct));
+function getActivity() {
+    let activity = localStorage.getItem("activities");
+    if (activity === null) {
+        actArr = []
+    }
+    else {
+        actArr = JSON.parse(activity)
+        // console.log(funObj)
+        // console.log(funObj.toString().split(","))
+    }
+}
 
 function regFunction() {
     console.log("reg function is working")
@@ -43,66 +54,50 @@ function regFunction() {
 }
 
 function showAllActivity() {
-    let fun = localStorage.getItem("activities");
-    if (fun == null) {
-        funObj = []
-    }
-    else {
-        funObj = JSON.parse(fun)
-        // console.log(funObj)
-        // console.log(funObj.toString().split(","))
-    }
+    getActivity()
     let html = "";
-    let funStr = funObj.toString().split(",");
-    funStr.forEach(function (element, index) {
+    let actStr = actArr.toString().split(",");
+    actStr.forEach(function (element, index) {
         html += `
            <li role="presentation" class="divider">${element}</li>
-           <button id="${index}" onclick="delEachActivity(id)" class="btn">Delete Note</button>
+           <button id="${index}" onclick="delEachActivity(${index})" class="btn">Delete Note</button>
         `
         console.log(index)
     });
     let list = document.createElement("ul");
     list.innerHTML = html;
     // console.log(list)
-    if (funStr.length != 0) {
+    if (actStr.length != 0) {
         // console.log(funStr.length)
-        document.getElementById("activity").innerHTML = ""
+        document.getElementById("activity").innerHTML = "";
         document.getElementById("activity").appendChild(list);
         // console.log(document.getElementById("activity").appendChild(list))
     }
     else{
-        allActivities.innerHTML = `click on add button to add some activities`
+        allActivities.innerHTML = `click on add button to add some activities`;
     }
 }
 
 function delEachActivity(index) {
 //    let delBtn = document.getElementById("delAct");
 let confirmDel = confirm("Delete this note?");
-if (confirmDel == true) {
-    let fun = localStorage.getItem("activities");
-    if (fun == null) {
-        funObj = []
-    }
-    else {
-        funObj = JSON.parse(fun)
-        // console.log(funObj)
-        // console.log(funObj.toString().split(","))
-    }
+if (confirmDel === true) {
+   getActivity();
     // var idx = stringFun.indexOf(activity1);
     // console.log(idx);
-    funObj.splice(index, 1);
+    actArr.splice(index, 1);
     // funObj.toString().remove(index)
-    console.log(index)
-    console.log(funObj)
-    localStorage.setItem("activities", JSON.stringify(funObj));
+    console.log(index);
+    console.log(funObj);
+    localStorage.setItem("activities", JSON.stringify(actArr));
 }
 showAllActivity()
 }
 
 function addActivity() {
     if (addFun.textContent = "Add") {
-        addFun.textContent = "Enter"
-        console.log(addFun.textContent)
+        addFun.textContent = "Enter";
+        console.log(addFun.textContent);
         // console.log(addFun.removeEventListener("click", addActivity))
         let html = `
         <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
@@ -119,24 +114,16 @@ function addActivity() {
 function showAddedActivity() {
     let text = document.getElementById("addFunActivities");
     if (addFun.textContent = "Enter"){
-        addFun.textContent = "Add"
-        let fun = localStorage.getItem("activities");
-        if (fun == null) {
-            funObj = []
-        }
-        else {
-            funObj = JSON.parse(fun)
-            // console.log(funObj)
-            // console.log(funObj.toString().split(","))
-        }
+        addFun.textContent = "Add";
+        getActivity();
     // let text = document.getElementById("addFunActivities");
     let textValue = text.value;
-    console.log(textValue)
+    console.log(textValue);
     if(textValue != "") {
-        console.log(textValue)
-        funObj.push(textValue);
+        console.log(textValue);
+        actArr.push(textValue);
     }
-    localStorage.setItem("activities", JSON.stringify(funObj));
+    localStorage.setItem("activities", JSON.stringify(actArr));
     // document.querySelector(".add").innerHTML = " "
     // text.style.display = "none";
     }
@@ -144,7 +131,7 @@ function showAddedActivity() {
     addFun.addEventListener("click", addActivity);
     text.style.display = "none";
     // document.querySelector(".add").style.display = "none";
-    showAllActivity()
+    showAllActivity();
     // document.querySelector(".add").innerHTML = ""      
 }
 
