@@ -6,7 +6,7 @@ let reg = document.querySelector("#register");
 let newSchedule = document.querySelector("#newschedule");
 let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 let allFunAct = [];
-let funObj = [];
+// let funArr = [];
 let isChecked1 = document.querySelector(".checkbox1");
 let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
@@ -30,7 +30,8 @@ addFun.addEventListener("click", addActivity);
 
 // Add users fun activities to local storage
 // localStorage.setItem("funactivities", JSON.stringify(allFunAct));
-function getActivity() {
+function getActivity () {
+    let actArr = [];
     let activity = localStorage.getItem("activities");
     if (activity === null) {
         actArr = []
@@ -40,6 +41,7 @@ function getActivity() {
         // console.log(funObj)
         // console.log(funObj.toString().split(","))
     }
+    return actArr
 }
 
 function regFunction() {
@@ -54,7 +56,7 @@ function regFunction() {
 }
 
 function showAllActivity() {
-    getActivity()
+    const activityArr = getActivity()
     let html = "";
     let actStr = actArr.toString().split(",");
     actStr.forEach(function (element, index) {
@@ -80,15 +82,15 @@ function showAllActivity() {
 
 function delEachActivity(index) {
 //    let delBtn = document.getElementById("delAct");
-let confirmDel = confirm("Delete this note?");
-if (confirmDel === true) {
-   getActivity();
+    let confirmDel = confirm("Delete this note?");
+    if (confirmDel === true) {
+    const activityArr = getActivity();
     // var idx = stringFun.indexOf(activity1);
     // console.log(idx);
     actArr.splice(index, 1);
     // funObj.toString().remove(index)
     console.log(index);
-    console.log(funObj);
+    console.log(actArr);
     localStorage.setItem("activities", JSON.stringify(actArr));
 }
 showAllActivity()
@@ -115,7 +117,7 @@ function showAddedActivity() {
     let text = document.getElementById("addFunActivities");
     if (addFun.textContent = "Enter"){
         addFun.textContent = "Add";
-        getActivity();
+        const activityArr = ();
     // let text = document.getElementById("addFunActivities");
     let textValue = text.value;
     console.log(textValue);
