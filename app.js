@@ -56,7 +56,7 @@ function regFunction() {
 }
 
 function showAllActivity() {
-    const activityArr = getActivity()
+    const actArr = getActivity()
     let html = "";
     let actStr = actArr.toString().split(",");
     actStr.forEach(function (element, index) {
@@ -84,7 +84,7 @@ function delEachActivity(index) {
 //    let delBtn = document.getElementById("delAct");
     let confirmDel = confirm("Delete this note?");
     if (confirmDel === true) {
-    const activityArr = getActivity();
+    const actArr = getActivity();
     // var idx = stringFun.indexOf(activity1);
     // console.log(idx);
     actArr.splice(index, 1);
@@ -117,7 +117,7 @@ function showAddedActivity() {
     let text = document.getElementById("addFunActivities");
     if (addFun.textContent = "Enter"){
         addFun.textContent = "Add";
-        const activityArr = ();
+        const actArr = getActivity();
     // let text = document.getElementById("addFunActivities");
     let textValue = text.value;
     console.log(textValue);
