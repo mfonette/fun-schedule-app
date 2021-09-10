@@ -18,9 +18,9 @@ let addFun = document.querySelector("#addActivities");
 
 // onclick, the input from funact is gotten and then pushed to allFunAct array
 reg.addEventListener("click", regFunction);
-newSchedule.addEventListener("click", newScheduleFn);
-allActivities.addEventListener("click", showAllActivity);
-addFun.addEventListener("click", addActivity);
+// newSchedule.addEventListener("click", newScheduleFn);
+// allActivities.addEventListener("click", showAllActivity);
+// addFun.addEventListener("click", addActivity);
 // delBtn.addEventListener("click", delEachActivity)
 
 
@@ -28,8 +28,108 @@ addFun.addEventListener("click", addActivity);
 
 // if any input field is empty, regFunction doesnt go through
 
-// Add users fun activities to local storage
-// localStorage.setItem("funactivities", JSON.stringify(allFunAct));
+function focusFunction() {
+    document.querySelectorAll(".formError").innerHTML = " "
+    console.log("its focus")
+}
+
+function onblurName() {
+    fullName = fname.value;
+    if (fullName.length === 0) {
+        document.querySelector("#nameError").innerHTML = "name cant be blank"
+        console.log( "name cant be blank")
+        // alert("name cant be blank")
+    }
+}
+
+function getName () {
+    onblurName();  
+    console.log(fullName)
+    let regExp =(/^[A-Za-z\s]+$/)
+
+     if (fullName.match(regExp)) {
+        localStorage.setItem("name", JSON.stringify(fullName))
+        console.log("correct")
+        fname.value = ""
+    }
+    else{
+        document.querySelector("#nameError").innerHTML = "only letters allowed"
+        console.log("only letters allowed")
+    }
+}
+
+function onblurUsername() {
+    userName = user.value;
+    if (userName.length === 0) {
+        document.querySelector("#usernameError").innerHTML = "username cant be blank"
+        console.log( "username cant be blank")
+        // alert("name cant be blank")
+    }
+}
+
+function getUsername() {
+    onblurUsername();
+    console.log(userName)
+    let regexp =(/^[A-Za-z]+$/)
+    if (userName.match(regexp)) {
+        localStorage.setItem("username", JSON.stringify(userName))
+        console.log("correct")
+    }
+    else{
+        document.querySelector("#usernameError").innerHTML = "only letters allowed"
+        console.log("only letters allowed")
+    }
+    user.value = ""
+}
+
+function onblurPwd() {
+    paswd = pwd.value;
+    if (paswd.length === 0) {
+        document.querySelector("#pwdError").innerHTML = "password cant be blank"
+        console.log( "password cant be blank")
+        // alert("name cant be blank")
+    }
+}
+
+function getPwd() {
+    onblurPwd();
+    let regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+    if (paswd.match(regexp)) {
+        localStorage.setItem("password", JSON.stringify(paswd))
+        console.log("correct")
+        pwd.value = " "
+    }
+    else{
+            document.querySelector("#pwdError").innerHTML = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter"
+        console.log("6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter")
+    }
+    
+}
+
+function activity () {
+    let funThings = funact.value;
+    // if (funThings.length === 0) {
+    //     document.querySelector("#activityError").innerHTML = "at least 3 activities"
+    //     console.log( "password cant be blank")
+    //     // alert("name cant be blank")
+    // }
+    // console.log(funThings.split(','))
+    allFunAct.push(funThings);
+    let actStr = allFunAct.toString().split(",")
+
+    if (actStr.length < 3){
+        document.querySelector("#activityError").innerHTML = "at least 3 activities"
+        console.log( "password cant be blank")
+    }
+    else {
+    localStorage.setItem("activities", JSON.stringify(actStr));
+    console.log(allFunAct);
+    funact.value = " ";
+    // funThings = " ";
+}
+}
+
 function getActivity () {
     let actArr = [];
     let activity = localStorage.getItem("activities");
@@ -45,21 +145,37 @@ function getActivity () {
 }
 
 function regFunction() {
-    console.log("reg function is working")
-    let funThings = funact.value;
-    // console.log(funThings.split(','))
-    allFunAct.push(funThings);
-    localStorage.setItem("activities", JSON.stringify(allFunAct));
-    console.log(allFunAct);
-    funact.value = " ";
+    // console.log("reg function is working")
+    // let funThings = funact.value;
+    // // console.log(funThings.split(','))
+    // allFunAct.push(funThings);
+    // let actStr = allFunAct.toString().split(",")
+    // localStorage.setItem("activities", JSON.stringify(actStr));
+    // console.log(allFunAct);
+    // funact.value = " ";
     // funThings = " ";
+
+    // let inputDetails = document.querySelectorAll(".formInput").value
+    // if (inputDetails.length === 0){
+    //     console.log("all input f")
+    //     reg.disabled = true
+    // }
+    // else{
+    //     reg.disabled = false
+    //     getName();
+    // }
+    getUsername();
+    getName();
+    // getUsername();
+    getPwd();
+    activity();
 }
 
 function showAllActivity() {
     const actArr = getActivity()
     let html = "";
-    let actStr = actArr.toString().split(",");
-    actStr.forEach(function (element, index) {
+    // let actStr = actArr.toString().split(",");
+    actArr.forEach(function (element, index) {
         html += `
            <li role="presentation" class="divider">${element}</li>
            <button id="${index}" onclick="delEachActivity(${index})" class="btn">Delete Note</button>
@@ -69,7 +185,7 @@ function showAllActivity() {
     let list = document.createElement("ul");
     list.innerHTML = html;
     // console.log(list)
-    if (actStr.length != 0) {
+    if (actArr.length != 0) {
         // console.log(funStr.length)
         document.getElementById("activity").innerHTML = "";
         document.getElementById("activity").appendChild(list);
@@ -86,19 +202,20 @@ function delEachActivity(index) {
     let confirmDel = confirm("Delete this note?");
     if (confirmDel === true) {
     const actArr = getActivity();
-    console.log(actArr);
+    // console.log(actArr);
     // var idx = stringFun.indexOf(activity1);
     // console.log(idx);
-    // actArr.splice(index, 1);
-    const filteredArr = actArr.filter((item, ind) => ind!== index)
-    
-    // funObj.toString().remove(index)
-    console.log(typeof index, index);
-    console.log(actArr);
-    localStorage.setItem("activities", JSON.stringify(filteredArr));
+    actArr.splice(index, 1);
+    // const filteredArr = actArr.filter((item, ind) =>{
+    //     console.log(ind !== index, ind != index, ind);
+    //     if (ind !== index) return item
+    //     })
+    console.log(actArr)
+    // console.log(filteredArr);
+    localStorage.setItem("activities", JSON.stringify(actArr));
+    // localStorage.setItem("activities", JSON.stringify(filteredArr));
     showAllActivity();
 }
-// showAllActivity()
 }
 
 function addActivity() {
@@ -143,68 +260,57 @@ function showAddedActivity() {
 }
 
 function dayOne() {
-    let stringFun = allFunAct.toString().split(',');
-
-    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    const actArr = getActivity()
+    console.log(actArr)
+    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity1);
 }
 
 function dayTwo() {
-    let stringFun = allFunAct.toString().split(',');
+    const actArr = getActivity()
+    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
+    console.log(activity1);
 
-    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)];
-    console.log(schedule1);
-
-    var idx = stringFun.indexOf(activity1);
+    var idx = actArr.indexOf(activity1);
     console.log(idx);
+    actArr.splice(idx, 1);
+    console.log(actArr);
 
-    stringFun.splice(idx, 1);
-    console.log(stringFun);
-
-    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity2);
 
-    // if (schedule2 != schedule1){
-     console.log(activity1 + " " + activity2);
-    // }
-    // else{
-    //     console.log('sths wrong')
-    // }
-    // console.log(allFunAct.toString().split(','))
-    // console.log(allFunAct.toString().split(',').length)
+    console.log(activity1 + " " + activity2);
 }
 
 function dayThree() {
-    let stringFun = allFunAct.toString().split(',');
-
-    let activity3 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    const actArr = getActivity()
+    let activity3 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity3);
 
-    let idx2 = stringFun.indexOf(activity3);
+    let idx2 = actArr.indexOf(activity3);
     console.log(idx2);
 
-    stringFun.splice(idx2, 1);
-    console.log(stringFun);
+    actArr.splice(idx2, 1);
+    console.log(actArr);
 
-    let activity1 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity1);
 
-    let idx = stringFun.indexOf(schedule1);
+    var idx = actArr.indexOf(activity1);
     console.log(idx);
+    actArr.splice(idx, 1);
+    console.log(actArr);
 
-    stringFun.splice(idx, 1);
-    console.log(stringFun);
-
-    let activity2 = stringFun[Math.floor(Math.random()*stringFun.length)];
+    let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity2);
-
-
-    console.log(activity3 + activity1 + activity2);
+    console.log(activity3 + " " + activity1 + " " + activity2);
 }
 
 function newScheduleFn() {
+    let allSchedule = document.querySelector("#schedule")
     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
-        dayOne();
+        let oneDAy = dayOne();
+        allSchedule.textContent = oneDAy
     }
     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
         dayOne();

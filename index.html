@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
-<body>
-    <form action="">
-        <input type="text" placeholder="full name" id="name">
-        <input type="text" placeholder="username"id="username">
-        <input type="text" placeholder="password" id="passwd">
-        <input type="text" placeholder="fun activities you will love to try out" id="funActivities">
-        <input type="button" value="Register" id="register">
-        <!-- <button id="btn">signup</button> -->
-    </form>
 
+<body>
     <div class="container">
-        <!-- <input type="button" value="Create New Schedule" id="newschedule"> -->
+        <form class="form" action="">
+            <div class="formTitle">
+                <h3>Sign Up</h3>
+            </div>
+            <div class="formItem">
+                <input type="text" class="formInput formInputError" placeholder="full name" id="name" onblur="onblurName()" onfocus="focusFunction()"><span class="formError" id="nameError"></span>
+                <input type="text" class="formInput formInputError" placeholder="username" id="username" onblur="onblurUsername()" onfocus="focusFunction()"><span class="formError" id="usernameError"></span>
+                <input type="text" class="formInput" placeholder="password" id="passwd" onblur="onblurPwd()" onfocus="focusFunction()" ><span class="formError" id="pwdError" ></span>
+                <input type="text" class="formInput" placeholder="fun activities you will love to try out" id="funActivities" onfocus="focusFunction()"><span class="formError" id="activityError"></span>
+                <input type="button" class="formInput" value="Register" id="register">
+                <!-- <button id="btn">signup</button> -->
+            </div>
+        </form>
+    </div>
+
+    <!-- <div class="container">
         <div class="dropdown" id="navbar">
             <button class="btn btn-primary dropdown-toggle" id="dropdwn" type="button" data-toggle="dropdown">Create New Schedule
             <span class="caret"></span></button>
@@ -29,9 +39,9 @@
               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">sunday</a><input type="checkbox" class="checkbox3"></li>
               <li role="presentation" class="divider"></li>
               <input type="button" value="Enter" id="newschedule">
-              <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>     -->
             </ul>
           </div>
+          <div id="schedule"></div>
     </div>
 
     <div class="container" id="activityDiv">
@@ -40,15 +50,21 @@
     </div>
     <div class="container" id="added">
         <button class="btn btn-primary" id="addActivities" type="button">Add</button> 
-            <!-- <input type="button" value="Add" id="addActivities"> -->
             <div class="add"> </div>
-    </div>
+    </div> -->
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
+
 </html>
