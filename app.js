@@ -12,13 +12,28 @@ let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
 let allActivities= document.querySelector("#activityDiv");
 let addFun = document.querySelector("#addActivities");
+let pwdIsvalid = false
+let userIsValid = false
+let nameIsValid = false
+let activityIsValid = false
+
+let newer = document.querySelector("#dis1");
 // let delBtn = document.getElementById("delAct");
 
 
-
+// document.getElementById
 // onclick, the input from funact is gotten and then pushed to allFunAct array
-reg.addEventListener("click", regFunction);
+if (reg){
+    reg.addEventListener("click", regFunction);
+}
+
+if (newSchedule) {
+    newSchedule.addEventListener("click", newScheduleFn); 
+}
 // newSchedule.addEventListener("click", newScheduleFn);
+// console.log(fname)
+// console.log(document.getElementById("new"))
+// document.getElementById('yup').addEventListener("click", newScheduleFn)
 // allActivities.addEventListener("click", showAllActivity);
 // addFun.addEventListener("click", addActivity);
 // delBtn.addEventListener("click", delEachActivity)
@@ -48,6 +63,7 @@ function getName () {
     let regExp =(/^[A-Za-z\s]+$/)
 
      if (fullName.match(regExp)) {
+         nameIsValid = true
         localStorage.setItem("name", JSON.stringify(fullName))
         console.log("correct")
         fname.value = ""
@@ -72,6 +88,7 @@ function getUsername() {
     console.log(userName)
     let regexp =(/^[A-Za-z]+$/)
     if (userName.match(regexp)) {
+        userIsValid = true
         localStorage.setItem("username", JSON.stringify(userName))
         console.log("correct")
     }
@@ -96,6 +113,7 @@ function getPwd() {
     let regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
     if (paswd.match(regexp)) {
+        pwdIsvalid = true
         localStorage.setItem("password", JSON.stringify(paswd))
         console.log("correct")
         pwd.value = " "
@@ -117,12 +135,14 @@ function activity () {
     // console.log(funThings.split(','))
     allFunAct.push(funThings);
     let actStr = allFunAct.toString().split(",")
+    console.log(actStr)
 
     if (actStr.length < 3){
         document.querySelector("#activityError").innerHTML = "at least 3 activities"
         console.log( "password cant be blank")
     }
     else {
+    activityIsValid = true;
     localStorage.setItem("activities", JSON.stringify(actStr));
     console.log(allFunAct);
     funact.value = " ";
@@ -145,6 +165,7 @@ function getActivity () {
 }
 
 function regFunction() {
+   
     // console.log("reg function is working")
     // let funThings = funact.value;
     // // console.log(funThings.split(','))
@@ -162,13 +183,25 @@ function regFunction() {
     // }
     // else{
     //     reg.disabled = false
-    //     getName();
+    //     getName();  
     // }
     getUsername();
     getName();
     // getUsername();
     getPwd();
     activity();
+
+    if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid){
+        console.log("reg is fine")
+        return true
+    }
+    // if (newer) {
+    //     document.querySelector("#dis1").style.display = "none";
+    // }
+    // else{
+
+    // }
+
 }
 
 function showAllActivity() {
@@ -311,6 +344,7 @@ function newScheduleFn() {
     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
         let oneDAy = dayOne();
         allSchedule.textContent = oneDAy
+        document.getElementById("#funDay").style.display = "none"
     }
     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
         dayOne();

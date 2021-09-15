@@ -46,3 +46,59 @@
     font-size: 0.9em;
 }
 
+/* dashboard */
+/* .first{
+    height: 60px;
+} */
+
+.circle{
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: 29px;
+     height:29px;
+}
+
+#navbarSupportedContent {
+    /* margin-right: end; */
+    /* justify-content: left; */
+    /* justify-items: right; */
+    /* justify-self: right; */
+    /* align-items: right; */
+    position:absolute;
+     left:60em;
+     /* float: right */
+} 
+
+.freedy{
+    font-weight: bold;
+}
+.small-section{
+    background-color: white;
+    height: 30em;
+
+}
+.x{
+    width: 100em;
+}
+
+.small-ul{
+    list-style-type: none;
+}
+.small-ul li{
+    margin-top: 30px;
+    cursor: pointer;
+    align-content: center;
+}
+
+.card{
+    position: absolute;
+    width: 40em;
+    right: -35em;
+    top: -25em;
+    background-color:#bd9797 !important;
+}
+
+.funDay{
+    /* display: none; */
+}
+
