@@ -14,7 +14,7 @@
 
 <body>
     <div class="container">
-        <form class="form" action="">
+        <form class="form" action="" onsubmit="regFunction()">
             <div class="formTitle">
                 <h3>Sign Up</h3>
             </div>
@@ -23,7 +23,7 @@
                 <input type="text" class="formInput formInputError" placeholder="username" id="username" onblur="onblurUsername()" onfocus="focusFunction()"><span class="formError" id="usernameError"></span>
                 <input type="text" class="formInput" placeholder="password" id="passwd" onblur="onblurPwd()" onfocus="focusFunction()" ><span class="formError" id="pwdError" ></span>
                 <input type="text" class="formInput" placeholder="fun activities you will love to try out" id="funActivities" onfocus="focusFunction()"><span class="formError" id="activityError"></span>
-                <a href="dashboard.html"><input type="submit" class="formInput register" value="Register" id="register"></a>
+                <input type="submit" class="formInput register" value="Register" id="register">
                 <!-- <button class="formInput" id="yup">Register</button> -->
                 <!-- <button id="btn">signup</button> -->
                

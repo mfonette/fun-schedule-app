@@ -44,15 +44,17 @@ if (newSchedule) {
 // if any input field is empty, regFunction doesnt go through
 
 function focusFunction() {
-    document.querySelectorAll(".formError").innerHTML = " "
-    console.log("its focus")
+    Array.from(document.querySelectorAll('.formError')).forEach(elm => {
+        elm.innerHTML = "" 
+        console.log("its focus");
+    })
 }
 
 function onblurName() {
     fullName = fname.value;
     if (fullName.length === 0) {
-        document.querySelector("#nameError").innerHTML = "name cant be blank"
-        console.log( "name cant be blank")
+        document.querySelector("#nameError").innerHTML = "name cant be blank";
+        console.log( "name cant be blank");
         // alert("name cant be blank")
     }
 }
@@ -65,7 +67,7 @@ function getName () {
      if (fullName.match(regExp)) {
          nameIsValid = true
         localStorage.setItem("name", JSON.stringify(fullName))
-        console.log("correct")
+        console.log("name is correct")
         fname.value = ""
     }
     else{
@@ -90,7 +92,7 @@ function getUsername() {
     if (userName.match(regexp)) {
         userIsValid = true
         localStorage.setItem("username", JSON.stringify(userName))
-        console.log("correct")
+        console.log("user is correct")
     }
     else{
         document.querySelector("#usernameError").innerHTML = "only letters allowed"
@@ -115,7 +117,7 @@ function getPwd() {
     if (paswd.match(regexp)) {
         pwdIsvalid = true
         localStorage.setItem("password", JSON.stringify(paswd))
-        console.log("correct")
+        console.log(" password correct")
         pwd.value = " "
     }
     else{
@@ -164,44 +166,18 @@ function getActivity () {
     return actArr
 }
 
-function regFunction() {
-   
-    // console.log("reg function is working")
-    // let funThings = funact.value;
-    // // console.log(funThings.split(','))
-    // allFunAct.push(funThings);
-    // let actStr = allFunAct.toString().split(",")
-    // localStorage.setItem("activities", JSON.stringify(actStr));
-    // console.log(allFunAct);
-    // funact.value = " ";
-    // funThings = " ";
-
-    // let inputDetails = document.querySelectorAll(".formInput").value
-    // if (inputDetails.length === 0){
-    //     console.log("all input f")
-    //     reg.disabled = true
-    // }
-    // else{
-    //     reg.disabled = false
-    //     getName();  
-    // }
+function regFunction(e) {
     getUsername();
     getName();
-    // getUsername();
     getPwd();
     activity();
 
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid){
+        window.location.href = "dashboard.html"
         console.log("reg is fine")
+        e.preventDefault();
         return true
     }
-    // if (newer) {
-    //     document.querySelector("#dis1").style.display = "none";
-    // }
-    // else{
-
-    // }
-
 }
 
 function showAllActivity() {
