@@ -6,7 +6,6 @@ let reg = document.querySelector("#register");
 let newSchedule = document.querySelector("#newschedule");
 let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 let allFunAct = [];
-// let funArr = [];
 let isChecked1 = document.querySelector(".checkbox1");
 let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
@@ -21,8 +20,7 @@ let newer = document.querySelector("#dis1");
 // let delBtn = document.getElementById("delAct");
 
 
-// document.getElementById
-// onclick, the input from funact is gotten and then pushed to allFunAct array
+
 if (reg){
     reg.addEventListener("click", regFunction);
 }
@@ -316,11 +314,24 @@ function dayThree() {
 }
 
 function newScheduleFn() {
-    let allSchedule = document.querySelector("#schedule")
+    let allSchedule = document.querySelector("#funDay")
     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
-        let oneDAy = dayOne();
-        allSchedule.textContent = oneDAy
-        document.getElementById("#funDay").style.display = "none"
+    const actArr = getActivity()
+    console.log(actArr)
+    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
+    console.log(activity1); 
+
+
+        let dayOfFun = document.querySelector(".day")
+        document.querySelector(".cd").style.display = "none"
+        allSchedule.innerHTML = `
+        <div class="card day1">
+            <div class="card-body day">
+                <h4 class="card-title">${dayOfFun.textContent}</h4>
+                <p class="card-text">${activity1}</p>
+            </div>
+        </div>
+        `
     }
     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
         dayOne();
