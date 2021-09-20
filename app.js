@@ -273,6 +273,7 @@ function dayOne() {
 
 function dayTwo() {
     const actArr = getActivity()
+    const dayTwoArr = []
 
     const firstDay = dayOne();
     var idx = actArr.indexOf(firstDay);
@@ -283,7 +284,12 @@ function dayTwo() {
     let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity2);
 
-    console.log(firstDay + " " + activity2);
+    dayTwoArr.push(firstDay);
+    dayTwoArr.push(activity2);
+
+    // console.log(firstDay + " " + activity2);
+    console.log((dayTwoArr))
+    return dayTwoArr
 }
 
 function dayThree() {
@@ -311,7 +317,7 @@ function dayThree() {
 }
 
 function newScheduleFn(e) {
-    let allSchedule = document.querySelector("#funDay")
+    let allSchedule = document.querySelector(".funDay")
     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
         let firstDay = dayOne();
         let dayOfFun = document.querySelector(".day");
@@ -332,7 +338,26 @@ function newScheduleFn(e) {
         dayOne();
     }
     else if (isChecked1.checked && isChecked2.checked && isChecked3.checked === false){ 
-        dayTwo();
+        // dayTwo();
+        let secDay = dayTwo()
+
+        // Array.from(document.querySelectorAll('.day')).forEach(elm => {
+          
+        // });
+        let dayOfFun = document.querySelector(".day");
+        document.querySelector(".cd").style.display = "none";
+        secDay.forEach(elm => {
+            console.log(elm)
+        allSchedule.innerHTML = `
+        <div class="card day1">
+            <div class="card-body day">
+                <h4 class="card-title">${dayOfFun.textContent}</h4>
+                <p class="card-text">${elm}</p>
+            </div>
+        </div>
+        `
+        })
+
     }
     else if (isChecked1.checked && isChecked2.checked === false && isChecked3.checked) { 
         dayTwo();
