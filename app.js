@@ -11,12 +11,11 @@ let isChecked2 = document.querySelector(".checkbox2");
 let isChecked3 = document.querySelector(".checkbox3");
 let allActivities= document.querySelector("#activityDiv");
 let addFun = document.querySelector("#addActivities");
-let pwdIsvalid = false
-let userIsValid = false
-let nameIsValid = false
-let activityIsValid = false
+let pwdIsvalid = false;
+let userIsValid = false;
+let nameIsValid = false;
+let activityIsValid = false;
 
-let newer = document.querySelector("#dis1");
 // let delBtn = document.getElementById("delAct");
 
 
@@ -39,13 +38,11 @@ if (newSchedule) {
 
 // addFun.addEventListener("click", showAddedActivity);
 
-// if any input field is empty, regFunction doesnt go through
-
 function focusFunction() {
     Array.from(document.querySelectorAll('.formError')).forEach(elm => {
-        elm.innerHTML = "" 
+        elm.innerHTML = "" ;
         console.log("its focus");
-    })
+    });
 }
 
 function onblurName() {
@@ -59,51 +56,51 @@ function onblurName() {
 
 function getName () {
     onblurName();  
-    console.log(fullName)
-    let regExp =(/^[A-Za-z\s]+$/)
+    console.log(fullName);
+    let regExp =(/^[A-Za-z\s]+$/);
 
      if (fullName.match(regExp)) {
-         nameIsValid = true
-        localStorage.setItem("name", JSON.stringify(fullName))
-        console.log("name is correct")
-        fname.value = ""
+         nameIsValid = true;
+        localStorage.setItem("name", JSON.stringify(fullName));
+        console.log("name is correct");
+        fname.value = "";
     }
     else{
-        document.querySelector("#nameError").innerHTML = "only letters allowed"
-        console.log("only letters allowed")
+        document.querySelector("#nameError").innerHTML = "only letters allowed";
+        console.log("only letters allowed");
     }
 }
 
 function onblurUsername() {
     userName = user.value;
     if (userName.length === 0) {
-        document.querySelector("#usernameError").innerHTML = "username cant be blank"
-        console.log( "username cant be blank")
+        document.querySelector("#usernameError").innerHTML = "username cant be blank";
+        console.log( "username cant be blank");
         // alert("name cant be blank")
     }
 }
 
 function getUsername() {
     onblurUsername();
-    console.log(userName)
-    let regexp =(/^[A-Za-z]+$/)
+    console.log(userName);
+    let regexp =(/^[A-Za-z]+$/);
     if (userName.match(regexp)) {
-        userIsValid = true
-        localStorage.setItem("username", JSON.stringify(userName))
-        console.log("user is correct")
+        userIsValid = true;
+        localStorage.setItem("username", JSON.stringify(userName));
+        console.log("user is correct");
     }
     else{
-        document.querySelector("#usernameError").innerHTML = "only letters allowed"
-        console.log("only letters allowed")
+        document.querySelector("#usernameError").innerHTML = "only letters allowed";
+        console.log("only letters allowed");
     }
-    user.value = ""
+    user.value = "";
 }
 
 function onblurPwd() {
     paswd = pwd.value;
     if (paswd.length === 0) {
-        document.querySelector("#pwdError").innerHTML = "password cant be blank"
-        console.log( "password cant be blank")
+        document.querySelector("#pwdError").innerHTML = "password cant be blank";
+        console.log( "password cant be blank");
         // alert("name cant be blank")
     }
 }
@@ -113,10 +110,10 @@ function getPwd() {
     let regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
     if (paswd.match(regexp)) {
-        pwdIsvalid = true
-        localStorage.setItem("password", JSON.stringify(paswd))
-        console.log(" password correct")
-        pwd.value = " "
+        pwdIsvalid = true;
+        localStorage.setItem("password", JSON.stringify(paswd));
+        console.log(" password correct");
+        pwd.value = " ";
     }
     else{
             document.querySelector("#pwdError").innerHTML = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter"
@@ -138,8 +135,8 @@ function activity () {
     console.log(actStr)
 
     if (actStr.length < 3){
-        document.querySelector("#activityError").innerHTML = "at least 3 activities"
-        console.log( "password cant be blank")
+        document.querySelector("#activityError").innerHTML = "at least 3 activities";
+        console.log( "password cant be blank");
     }
     else {
     activityIsValid = true;
@@ -157,7 +154,7 @@ function getActivity () {
         actArr = []
     }
     else {
-        actArr = JSON.parse(activity)
+        actArr = JSON.parse(activity);
         // console.log(funObj)
         // console.log(funObj.toString().split(","))
     }
@@ -217,7 +214,7 @@ function delEachActivity(index) {
     //     console.log(ind !== index, ind != index, ind);
     //     if (ind !== index) return item
     //     })
-    console.log(actArr)
+    console.log(actArr);
     // console.log(filteredArr);
     localStorage.setItem("activities", JSON.stringify(actArr));
     // localStorage.setItem("activities", JSON.stringify(filteredArr));
@@ -271,14 +268,14 @@ function dayOne() {
     console.log(actArr)
     let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity1);
+    return activity1
 }
 
 function dayTwo() {
     const actArr = getActivity()
-    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
-    console.log(activity1);
 
-    var idx = actArr.indexOf(activity1);
+    const firstDay = dayOne();
+    var idx = actArr.indexOf(firstDay);
     console.log(idx);
     actArr.splice(idx, 1);
     console.log(actArr);
@@ -286,7 +283,7 @@ function dayTwo() {
     let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
     console.log(activity2);
 
-    console.log(activity1 + " " + activity2);
+    console.log(firstDay + " " + activity2);
 }
 
 function dayThree() {
@@ -313,22 +310,17 @@ function dayThree() {
     console.log(activity3 + " " + activity1 + " " + activity2);
 }
 
-function newScheduleFn() {
+function newScheduleFn(e) {
     let allSchedule = document.querySelector("#funDay")
     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
-    const actArr = getActivity()
-    console.log(actArr)
-    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
-    console.log(activity1); 
-
-
-        let dayOfFun = document.querySelector(".day")
-        document.querySelector(".cd").style.display = "none"
+        let firstDay = dayOne();
+        let dayOfFun = document.querySelector(".day");
+        document.querySelector(".cd").style.display = "none";
         allSchedule.innerHTML = `
         <div class="card day1">
             <div class="card-body day">
                 <h4 class="card-title">${dayOfFun.textContent}</h4>
-                <p class="card-text">${activity1}</p>
+                <p class="card-text">${firstDay}</p>
             </div>
         </div>
         `
