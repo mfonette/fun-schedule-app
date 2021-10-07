@@ -3,5 +3,10 @@ function generate_random_item(arr):
     item = Math.random()
     return item
 
-function generate_schedules():
+function generate_schedules(selected_days):
     // get the list of days
+    if selected_days is undefined:
+        selected_days = get_selected_days()
+    
+    for day in selected_days:
+        schedule = generate_random_item(arr)
