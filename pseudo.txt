@@ -15,7 +15,7 @@ function generate_schedules(selected_days):
         schedule = generate_random_item(arr)
         schedule_for_a_particular_day = {
             'name_of_day': day,
-            'activities: [schedule]
+            'activities': [schedule]
         }
         final_schedule_arr.push(schedule_for_day)
 
