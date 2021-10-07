@@ -1,0 +1,7 @@
+function generate_random_item(arr):
+    // do something
+    item = Math.random()
+    return item
+
+function generate_schedules():
+    // get the list of days
