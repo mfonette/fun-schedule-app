@@ -4,9 +4,18 @@ function generate_random_item(arr):
     return item
 
 function generate_schedules(selected_days):
+    // returns schedule for the days
     // get the list of days
+    final_schedule_arr = []
     if selected_days is undefined:
         selected_days = get_selected_days()
     
     for day in selected_days:
         schedule = generate_random_item(arr)
+        schedule_for_day = {
+            'name_of_day': day,
+            'activities: [schedule]
+        }
+        final_schedule_arr.push(schedule_for_day)
+
+    return final_schedule_arr
