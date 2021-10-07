@@ -5,6 +5,7 @@ function generate_random_item(arr):
 
 function generate_schedules(selected_days):
     // returns schedule for the days
+    // eg: selected_days = ['friday', 'monday']
     // get the list of days
     final_schedule_arr = []
     if selected_days is undefined:
