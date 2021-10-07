@@ -13,7 +13,7 @@ function generate_schedules(selected_days):
     
     for day in selected_days:
         schedule = generate_random_item(arr)
-        schedule_for_day = {
+        schedule_for_a_particular_day = {
             'name_of_day': day,
             'activities: [schedule]
         }
