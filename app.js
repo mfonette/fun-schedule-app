@@ -6,9 +6,9 @@ let reg = document.querySelector("#register");
 let newSchedule = document.querySelector("#newschedule");
 let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 let allFunAct = [];
-let isChecked1 = document.querySelector(".checkbox1");
-let isChecked2 = document.querySelector(".checkbox2");
-let isChecked3 = document.querySelector(".checkbox3");
+// let isChecked1 = document.querySelector(".checkbox1");
+// let isChecked2 = document.querySelector(".checkbox2");
+// let isChecked3 = document.querySelector(".checkbox3");
 let allActivities= document.querySelector("#activityDiv");
 let addFun = document.querySelector("#addActivities");
 let pwdIsvalid = false;
@@ -270,31 +270,54 @@ function generate_random_activity() {
     return activity1
 }
 
-function generate_schedules(){
-    let randomActivity = generate_random_activity();
-    let final_schedule_arr = []   
-}
-
 function get_selected_days() {
-    let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    checkboxes.forEach(function (checkbox){
-        if (checkbox.checked) {
-            console.log(checkbox.value)
-            return checkbox.value
-                // document.body.append(checkbox.value + 'done ');
-                }
-    })
-}
-
-function newScheduleFn(){
+    let checkedDays = []
     let checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
     checkboxes.forEach(function (checkbox){
         if (checkbox.checked) {
-            console.log(checkbox.value)
-                // document.body.append(checkbox.value + 'done ');
+            checkedDays.push(checkbox.value)
+            // console.log(checkbox.value)
                 }
     })
+    console.log(checkedDays)
+    return checkedDays
 }
+
+function generate_schedules(){
+    let randomActivity = generate_random_activity();
+    let selected_days = get_selected_days();
+    let final_schedule_arr = []   
+    if (selected_days === null){
+        alert("please select some days")
+    }
+    else{
+        selected_days.forEach(function (selectedDay){
+            schedule_for_a_particular_day = {
+                'name_of_day': selectedDay,
+                'activities': randomActivity
+            }
+        })
+    }
+    final_schedule_arr.push(schedule_for_a_particular_day);
+    console.log(final_schedule_arr)
+    return final_schedule_arr;
+}
+
+function newScheduleFn() {
+   generate_schedules();
+}
+
+// function newScheduleFn(){
+//     let checkedDays = []
+//     let checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
+//     checkboxes.forEach(function (checkbox){
+//         if (checkbox.checked) {
+//             checkedDays.push(checkbox.value)
+//             // console.log(checkbox.value)
+//                 }
+//     })
+//     console.log(checkedDays)
+// }
 
 // function newScheduleFn(e) {
 //     let allSchedule = document.querySelector(".funDay")
