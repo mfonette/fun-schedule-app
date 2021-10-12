@@ -14,19 +14,11 @@ function generate_schedules(selected_days):
     for day in selected_days:...we are in a loop here
         schedule = generate_random_item(arr)
         schedule_for_a_particular_day = {
-            'name_of_day': day, 
-            'activities: [schedule]
+            'name_of_day': day,
+            'activities': [schedule]
         }
         final_schedule_arr.push(schedule_for_a_particular_day)
 
     return final_schedule_arr
 
-    why the argument in the generate_random_item
-    i dont really understand line 7
-    you said get the selected days as a list but if you do that you wont be able to loop through it
-     how will i know the days that were checked
-     how do i get the days that were selected
-    where do i get to remove the activity been pushed to the day
-
-    for mw i think it should be inside the generate random item function because for each time its called to generate
-    an activity it goes through the function from the beginning
+   
