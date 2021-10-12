@@ -238,7 +238,6 @@ function addActivity() {
     // console.log(addFun.removeEventListener("click", addActivity))
 }
 
-
 function showAddedActivity() {
     let text = document.getElementById("addFunActivities");
     if (addFun.textContent = "Enter"){
@@ -263,7 +262,7 @@ function showAddedActivity() {
     // document.querySelector(".add").innerHTML = ""      
 }
 
-function dayOne() {
+function generate_random_activity() {
     const actArr = getActivity()
     console.log(actArr)
     let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
@@ -271,105 +270,139 @@ function dayOne() {
     return activity1
 }
 
-function dayTwo() {
-    const actArr = getActivity()
-    const dayTwoArr = []
-
-    const firstDay = dayOne();
-    var idx = actArr.indexOf(firstDay);
-    console.log(idx);
-    actArr.splice(idx, 1);
-    console.log(actArr);
-
-    let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
-    console.log(activity2);
-
-    dayTwoArr.push(firstDay);
-    dayTwoArr.push(activity2);
-
-    // console.log(firstDay + " " + activity2);
-    console.log((dayTwoArr))
-    return dayTwoArr
+function generate_schedules(){
+    let randomActivity = generate_random_activity();
+    let final_schedule_arr = []   
 }
 
-function dayThree() {
-    const actArr = getActivity()
-    let activity3 = actArr[Math.floor(Math.random()*actArr.length)];
-    console.log(activity3);
-
-    let idx2 = actArr.indexOf(activity3);
-    console.log(idx2);
-
-    actArr.splice(idx2, 1);
-    console.log(actArr);
-
-    let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
-    console.log(activity1);
-
-    var idx = actArr.indexOf(activity1);
-    console.log(idx);
-    actArr.splice(idx, 1);
-    console.log(actArr);
-
-    let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
-    console.log(activity2);
-    console.log(activity3 + " " + activity1 + " " + activity2);
+function get_selected_days() {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    checkboxes.forEach(function (checkbox){
+        if (checkbox.checked) {
+            console.log(checkbox.value)
+            return checkbox.value
+                // document.body.append(checkbox.value + 'done ');
+                }
+    })
 }
 
-function newScheduleFn(e) {
-    let allSchedule = document.querySelector(".funDay")
-    if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
-        let firstDay = dayOne();
-        let dayOfFun = document.querySelector(".day");
-        document.querySelector(".cd").style.display = "none";
-        allSchedule.innerHTML = `
-        <div class="card day1">
-            <div class="card-body day">
-                <h4 class="card-title">${dayOfFun.textContent}</h4>
-                <p class="card-text">${firstDay}</p>
-            </div>
-        </div>
-        `
-    }
-    else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
-        dayOne();
-    }
-    else if (isChecked1.checked === false && isChecked2.checked === false && isChecked3.checked){
-        dayOne();
-    }
-    else if (isChecked1.checked && isChecked2.checked && isChecked3.checked === false){ 
-        // dayTwo();
-        let secDay = dayTwo()
+function newScheduleFn(){
+    let checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
+    checkboxes.forEach(function (checkbox){
+        if (checkbox.checked) {
+            console.log(checkbox.value)
+                // document.body.append(checkbox.value + 'done ');
+                }
+    })
+}
 
-        // Array.from(document.querySelectorAll('.day')).forEach(elm => {
+// function newScheduleFn(e) {
+//     let allSchedule = document.querySelector(".funDay")
+//     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
+//         let firstDay = dayOne();
+//         let dayOfFun = document.querySelector(".day");
+//         document.querySelector(".cd").style.display = "none";
+//         allSchedule.innerHTML = `
+//         <div class="card day1">
+//             <div class="card-body day">
+//                 <h4 class="card-title">${dayOfFun.textContent}</h4>
+//                 <p class="card-text">${firstDay}</p>
+//             </div>
+//         </div>
+//         `
+//     }
+//     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
+//         dayOne();
+//     }
+//     else if (isChecked1.checked === false && isChecked2.checked === false && isChecked3.checked){
+//         dayOne();
+//     }
+//     else if (isChecked1.checked && isChecked2.checked && isChecked3.checked === false){ 
+//         // dayTwo();
+//         let secDay = dayTwo()
+
+//         // Array.from(document.querySelectorAll('.day')).forEach(elm => {
           
-        // });
-        let dayOfFun = document.querySelector(".day");
-        document.querySelector(".cd").style.display = "none";
-        secDay.forEach(elm => {
-            console.log(elm)
-        allSchedule.innerHTML = `
-        <div class="card day1">
-            <div class="card-body day">
-                <h4 class="card-title">${dayOfFun.textContent}</h4>
-                <p class="card-text">${elm}</p>
-            </div>
-        </div>
-        `
-        })
+//         // });
+//         let dayOfFun = document.querySelector(".day");
+//         document.querySelector(".cd").style.display = "none";
+//         secDay.forEach(elm => {
+//         console.log(elm)
+//         allSchedule.innerHTML += `
+//         <div class="card day1">
+//             <div class="card-body day">
+//                 <h4 class="card-title">${dayOfFun.textContent}</h4>
+//                 <p class="card-text">${elm}</p>
+//             </div>
+//         </div>
+//         `
+//         })
 
-    }
-    else if (isChecked1.checked && isChecked2.checked === false && isChecked3.checked) { 
-        dayTwo();
-     }
-    else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked) { 
-        dayTwo();
-    }
-    else if(isChecked1.checked && isChecked2.checked && isChecked3.checked){
-        dayThree();
-    }
-    else{
-       console.log('check a box please')
-    }
-}
+//     }
+//     else if (isChecked1.checked && isChecked2.checked === false && isChecked3.checked) { 
+//         dayTwo();
+//      }
+//     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked) { 
+//         dayTwo();
+//     }
+//     else if(isChecked1.checked && isChecked2.checked && isChecked3.checked){
+//         dayThree();
+//     }
+//     else{
+//        console.log('check a box please')
+//     }
+// }
     
+
+// function dayThree() {
+//     const actArr = getActivity()
+//     let activity3 = actArr[Math.floor(Math.random()*actArr.length)];
+//     console.log(activity3);
+
+//     let idx2 = actArr.indexOf(activity3);
+//     console.log(idx2);
+
+//     actArr.splice(idx2, 1);
+//     console.log(actArr);
+
+//     let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
+//     console.log(activity1);
+
+//     var idx = actArr.indexOf(activity1);
+//     console.log(idx);
+//     actArr.splice(idx, 1);
+//     console.log(actArr);
+
+//     let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
+//     console.log(activity2);
+//     console.log(activity3 + " " + activity1 + " " + activity2);
+// }
+
+// function dayOne() {
+//     const actArr = getActivity()
+//     console.log(actArr)
+//     let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
+//     console.log(activity1);
+//     return activity1
+// }
+
+// function dayTwo() {
+//     const actArr = getActivity()
+//     const dayTwoArr = []
+
+//     const firstDay = dayOne();
+//     var idx = actArr.indexOf(firstDay);
+//     console.log(idx);
+//     actArr.splice(idx, 1);
+//     console.log(actArr);
+
+//     let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
+//     console.log(activity2);
+
+//     dayTwoArr.push(firstDay);
+//     dayTwoArr.push(activity2);
+
+//     // console.log(firstDay + " " + activity2);
+//     console.log((dayTwoArr))
+//     return dayTwoArr
+// }
