@@ -22,12 +22,14 @@ if (reg) {
 
 if (newSchedule) {
     newSchedule.addEventListener("click", show_Schedule);
+    allActivities.addEventListener("click", showAllActivity);
+    addFun.addEventListener("click", addActivity);
 }
 // newSchedule.addEventListener("click", newScheduleFn);
 // console.log(fname)
 // console.log(document.getElementById("new"))
 // document.getElementById('yup').addEventListener("click", newScheduleFn)
-allActivities.addEventListener("click", showAllActivity);
+// allActivities.addEventListener("click", showAllActivity);
 // addFun.addEventListener("click", addActivity);
 // delBtn.addEventListener("click", delEachActivity)
 
@@ -166,7 +168,7 @@ function regFunction(e) {
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid) {
         window.location.href = "dashboard.html"
         console.log("reg is fine")
-        e.preventDefault();
+        // e.preventDefault();
         return true
     }
 }
@@ -184,7 +186,12 @@ function showAllActivity() {
         `
         console.log(index)
     });
- 
+    html += `
+    <li>
+    <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
+    <div class="add"> </div>
+    </li>
+    `
     if (actArr.length != 0) {
         // console.log(funStr.length)
         document.getElementById("activity").innerHTML = "";
@@ -192,18 +199,9 @@ function showAllActivity() {
         // console.log(document.getElementById("activity").appendChild(list))
     }
     else {
-        allActivities.innerHTML = `click on add button to add some activities`;
+        allActivities.textContent = `click on add button to add some activities`;
     }
 
-//     let addHTML =  `
-//     <li>
-//     <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
-//     <div class="add"> </div>
-//     </li>
-// `
-// // let list = document.createElement("li")
-// // list.innerHTML = addHTML
-// document.querySelector(".added").innerHTML = addHTML;
 }
 
 function delEachActivity(index) {
