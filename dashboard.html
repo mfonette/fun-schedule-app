@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
@@ -63,7 +64,7 @@
                                     <label for=""> sunday</label>
                                   </li>
                                   <li role="presentation" class="divider"></li>
-                                  <input type="button" value="Enter" id="newschedule">
+                                  <input type="button" value="Enter" class="newschedule">
                                 </ul>
                         </li>
                         <!-- <li>
@@ -73,6 +74,24 @@
                             <img src="" alt=""class="img-ul mr-3">latest schedule
                         </li> -->
                     </ul>
+
+                    <div class="container" id="activityDiv">
+                        <button class="btn btn-primary" type="button" data-toggle="dropdown">My activities</button> 
+                        <ul class="dropdown-menu" id="activity">
+                            <!-- <ul class="container added" id="" > -->
+                            <li>
+                            <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
+                            <!-- <div class="add"> </div> -->
+                            </li>
+                            <!-- </ul> -->
+                        </ul>  
+                    </div>
+                    <!-- <div class="container" id="added"> -->
+                        <!-- <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
+                            <div class="add"> </div> -->
+                    <!-- </div> -->
+
+                    <!-- <button id="${index}" onclick="delEachActivity(${index})" class="btn">Delete Note</button> -->
                 </div>      
              </div>       
               </div>
@@ -80,7 +99,7 @@
     </section>
 
     <section class="">
-        <div class="card cd">
+        <div class="card cardDiv">
             <div class="card-body">
                 <h4 class="card-title">Welcome to Weekend Fun app</h4>
                 <p class="card-text"> </p>
@@ -89,12 +108,21 @@
                 <button class="btn btn-primary" id="dropdwn" type="button" data-toggle="dropdown">Create New Schedule
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">friday</a><input type="checkbox" class="checkbox1"></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">saturday</a><input type="checkbox" class="checkbox2"></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">sunday</a><input type="checkbox" class="checkbox3"></li>
-                      <li role="presentation" class="divider"></li>
-                      <input type="button" value="Enter" id="newschedule">
-                    </ul>
+                        <li role="presentation" class="day"> 
+                          <input type="checkbox" class="checkbox1" value="friday">
+                          <label for="">friday</label>
+                        </li>
+                        <li role="presentation" class="day">
+                          <input type="checkbox" class="checkbox2" value="saturday">
+                          <label for=""> saturday</label>
+                        </li>
+                        <li role="presentation" class="day">
+                          <input type="checkbox" class="checkbox3" value="sunday">
+                          <label for=""> sunday</label>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <input type="button" value="Enter" class="newschedule">
+                      </ul>
             </div>
         </div>
     </section>

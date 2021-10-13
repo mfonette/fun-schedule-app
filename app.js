@@ -3,16 +3,17 @@ let user = document.querySelector("#username");
 let pwd = document.querySelector("#passwd");
 let funact = document.querySelector("#funActivities");
 let reg = document.querySelector("#register");
-let newSchedule = document.querySelector("#newschedule");
-let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
-let allFunAct = [];
-let allActivities = document.querySelector("#activityDiv");
-let addFun = document.querySelector("#addActivities");
 let pwdIsvalid = false;
 let userIsValid = false;
 let nameIsValid = false;
 let activityIsValid = false;
+let allFunAct = [];
 
+let newSchedule = document.querySelector(".newschedule");
+let allActivities = document.querySelector("#activityDiv");
+let addFun = document.querySelector("#addActivities");
+
+// let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 // let delBtn = document.getElementById("delAct");
 
 if (reg) {
@@ -26,7 +27,7 @@ if (newSchedule) {
 // console.log(fname)
 // console.log(document.getElementById("new"))
 // document.getElementById('yup').addEventListener("click", newScheduleFn)
-// allActivities.addEventListener("click", showAllActivity);
+allActivities.addEventListener("click", showAllActivity);
 // addFun.addEventListener("click", addActivity);
 // delBtn.addEventListener("click", delEachActivity)
 
@@ -172,27 +173,37 @@ function regFunction(e) {
 
 function showAllActivity() {
     const actArr = getActivity()
+   
     let html = "";
-    // let actStr = actArr.toString().split(",");
     actArr.forEach(function (element, index) {
         html += `
-           <li role="presentation" class="divider">${element}</li>
-           <button id="${index}" onclick="delEachActivity(${index})" class="btn">Delete Note</button>
+        <li role="presentation" class="divider">
+            <span> ${element}</span>
+            <span> <i id="${index}" onclick="delEachActivity(${index})" class="fa fa-trash btn" aria-hidden="true"></i></span>
+        </li>
         `
         console.log(index)
     });
-    let list = document.createElement("ul");
-    list.innerHTML = html;
-    // console.log(list)
+ 
     if (actArr.length != 0) {
         // console.log(funStr.length)
         document.getElementById("activity").innerHTML = "";
-        document.getElementById("activity").appendChild(list);
+        document.getElementById("activity").innerHTML = html;
         // console.log(document.getElementById("activity").appendChild(list))
     }
     else {
         allActivities.innerHTML = `click on add button to add some activities`;
     }
+
+//     let addHTML =  `
+//     <li>
+//     <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
+//     <div class="add"> </div>
+//     </li>
+// `
+// // let list = document.createElement("li")
+// // list.innerHTML = addHTML
+// document.querySelector(".added").innerHTML = addHTML;
 }
 
 function delEachActivity(index) {
@@ -311,7 +322,7 @@ function show_Schedule() {
     let generated_schedule = generate_schedules();
     let allSchedule = document.querySelector(".funDay");
     //   let dayOfFun = document.querySelector(".day");
-    document.querySelector(".cd").style.display = "none";
+    document.querySelector(".cardDiv").style.display = "none";
     let html = ""
     generated_schedule.forEach(function (schedule) {
         html += `

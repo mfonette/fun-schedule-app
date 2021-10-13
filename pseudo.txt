@@ -30,3 +30,9 @@ function generate_schedules(selected_days):
 
     for now i think it should be inside the generate random item function because for each time its called to generate
     an activity it goes through the function from the beginning
+
+
+    //for MY activities
+    On click a list of all my activities should be displayed with a delete icon and an add button at the end
+
+    
