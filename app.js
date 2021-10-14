@@ -1,5 +1,7 @@
 // TODO: change constant variable definitions from let to const
 // minimize use of global variables like pwdIsvalid unless necessary and accessed by multiple functions
+// TODO: remove innerHTML and substitute with something more secure except for places that strictly use html
+// Use triple equality/inequality except explicitly required
 const fname = document.querySelector("#name");
 const user = document.querySelector("#username");
 const pwd = document.querySelector("#passwd");
@@ -163,7 +165,6 @@ function getActivity() {
 
 function regFunction(e) {
     e.preventDefault();
-    // TODO: use assignment and return value from the functions to get nameIsValid and co
     const userIsValid = getUsername();
     const nameIsValid = getName();
     const pwdIsvalid =  getPwd();
