@@ -160,16 +160,16 @@ function getActivity() {
 }
 
 function regFunction(e) {
+    e.preventDefault();
     getUsername();
     getName();
     getPwd();
     activity();
 
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid) {
-        window.location.href = "dashboard.html"
-        console.log("reg is fine")
-        // e.preventDefault();
-        return true
+        window.location.href = "dashboard.html";
+        console.log("reg is fine");
+        return true;
     }
 }
 
