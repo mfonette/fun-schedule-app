@@ -1,18 +1,15 @@
-let fname = document.querySelector("#name");
-let user = document.querySelector("#username");
-let pwd = document.querySelector("#passwd");
-let funact = document.querySelector("#funActivities");
-let reg = document.querySelector("#register");
-let pwdIsvalid = false;
-let userIsValid = false;
-let nameIsValid = false;
-let activityIsValid = false;
+// TODO: change constant variable definitions from let to const
+// minimize use of global variables like pwdIsvalid unless necessary and accessed by multiple functions
+const fname = document.querySelector("#name");
+const user = document.querySelector("#username");
+const pwd = document.querySelector("#passwd");
+const funact = document.querySelector("#funActivities");
+const reg = document.querySelector("#register");
 let allFunAct = [];
 
-let newSchedule = document.querySelector(".newschedule");
-let allActivities = document.querySelector("#activityDiv");
-let addFun = document.querySelector("#addActivities");
-
+const newSchedule = document.querySelector(".newschedule");
+const allActivities = document.querySelector("#activityDiv");
+const addFun = document.querySelector("#addActivities");
 // let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 // let delBtn = document.getElementById("delAct");
 
@@ -54,18 +51,20 @@ function onblurName() {
 
 function getName() {
     onblurName();
+    // let nameIsValid = "";
     console.log(fullName);
     let regExp = (/^[A-Za-z\s]+$/);
 
     if (fullName.match(regExp)) {
-        nameIsValid = true;
         localStorage.setItem("name", JSON.stringify(fullName));
         console.log("name is correct");
         fname.value = "";
+        return true;
     }
     else {
         document.querySelector("#nameError").innerHTML = "only letters allowed";
         console.log("only letters allowed");
+        return false;
     }
 }
 
@@ -83,15 +82,17 @@ function getUsername() {
     console.log(userName);
     let regexp = (/^[A-Za-z]+$/);
     if (userName.match(regexp)) {
-        userIsValid = true;
         localStorage.setItem("username", JSON.stringify(userName));
         console.log("user is correct");
+        user.value = "";
+        return true
     }
     else {
         document.querySelector("#usernameError").innerHTML = "only letters allowed";
         console.log("only letters allowed");
+        return false
     }
-    user.value = "";
+        // user.value = "";
 }
 
 function onblurPwd() {
@@ -108,14 +109,15 @@ function getPwd() {
     let regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
     if (paswd.match(regexp)) {
-        pwdIsvalid = true;
         localStorage.setItem("password", JSON.stringify(paswd));
         console.log(" password correct");
         pwd.value = " ";
+        return true
     }
     else {
-        document.querySelector("#pwdError").innerHTML = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter"
-        console.log("6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter")
+        document.querySelector("#pwdError").innerHTML = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter";
+        console.log("6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter");
+        return false
     }
 
 }
@@ -135,13 +137,14 @@ function activity() {
     if (actStr.length < 3) {
         document.querySelector("#activityError").innerHTML = "at least 3 activities";
         console.log("password cant be blank");
+        return false;
     }
     else {
-        activityIsValid = true;
         localStorage.setItem("activities", JSON.stringify(actStr));
         console.log(allFunAct);
         funact.value = " ";
         // funThings = " ";
+        return true;
     }
 }
 
@@ -149,22 +152,23 @@ function getActivity() {
     let actArr = [];
     let activity = localStorage.getItem("activities");
     if (activity === null) {
-        actArr = []
+        actArr = [];
     }
     else {
         actArr = JSON.parse(activity);
         // console.log(funObj)
         // console.log(funObj.toString().split(","))
     }
-    return actArr
+    return actArr;
 }
 
 function regFunction(e) {
     e.preventDefault();
-    getUsername();
-    getName();
-    getPwd();
-    activity();
+    // TODO: use assignment and return value from the functions to get nameIsValid and co
+    const userIsValid = getUsername();
+    const nameIsValid = getName();
+    const pwdIsvalid =  getPwd();
+    const activityIsValid = activity();
 
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid) {
         window.location.href = "dashboard.html";
