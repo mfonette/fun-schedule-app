@@ -45,7 +45,7 @@ function focusFunction() {
 function onblurName() {
     fullName = fname.value;
     if (fullName.length === 0) {
-        document.querySelector("#nameError").innerHTML = "name cant be blank";
+        document.querySelector("#nameError").textContent = "name cant be blank";
         console.log("name cant be blank");
         // alert("name cant be blank")
     }
@@ -64,7 +64,7 @@ function getName() {
         return true;
     }
     else {
-        document.querySelector("#nameError").innerHTML = "only letters allowed";
+        document.querySelector("#nameError").textContent = "only letters allowed";
         console.log("only letters allowed");
         return false;
     }
@@ -73,7 +73,7 @@ function getName() {
 function onblurUsername() {
     userName = user.value;
     if (userName.length === 0) {
-        document.querySelector("#usernameError").innerHTML = "username cant be blank";
+        document.querySelector("#usernameError").textContent = "username cant be blank";
         console.log("username cant be blank");
         // alert("name cant be blank")
     }
@@ -90,7 +90,7 @@ function getUsername() {
         return true
     }
     else {
-        document.querySelector("#usernameError").innerHTML = "only letters allowed";
+        document.querySelector("#usernameError").textContent = "only letters allowed";
         console.log("only letters allowed");
         return false
     }
@@ -99,7 +99,7 @@ function getUsername() {
 function onblurPwd() {
     paswd = pwd.value;
     if (paswd.length === 0) {
-        document.querySelector("#pwdError").innerHTML = "password cant be blank";
+        document.querySelector("#pwdError").textContent = "password cant be blank";
         console.log("password cant be blank");
         // alert("name cant be blank")
     }
@@ -116,33 +116,52 @@ function getPwd() {
         return true
     }
     else {
-        document.querySelector("#pwdError").innerHTML = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter";
+        document.querySelector("#pwdError").textContent = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter";
         console.log("6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter");
         return false
     }
 
 }
 
-function activity() {
-    let funThings = funact.value;
-    // if (funThings.length === 0) {
-    //     document.querySelector("#activityError").innerHTML = "at least 3 activities"
-    //     console.log( "password cant be blank")
-    //     // alert("name cant be blank")
-    // }
-    // console.log(funThings.split(','))
-    allFunAct.push(funThings);
-    let actStr = allFunAct.toString().split(",")
-    console.log(actStr)
+// function activity() {
+//     let funThings = funact.value;
+//     // if (funThings.length === 0) {
+//     //     document.querySelector("#activityError").innerHTML = "at least 3 activities"
+//     //     console.log( "password cant be blank")
+//     //     // alert("name cant be blank")
+//     // }
+//     // console.log(funThings.split(','))
+//     allFunAct.push(funThings);
+//     let actStr = allFunAct.toString().split(",")
+//     console.log(actStr)
 
-    if (actStr.length < 3) {
-        document.querySelector("#activityError").innerHTML = "at least 3 activities";
+//     if (actStr.length < 3) {
+//         document.querySelector("#activityError").innerHTML = "at least 3 activities";
+//         console.log("password cant be blank");
+//         return false;
+//     }
+//     else {
+//         localStorage.setItem("activities", JSON.stringify(actStr));
+//         console.log(allFunAct);
+//         funact.value = " ";
+//         // funThings = " ";
+//         return true;
+//     }
+// }
+
+function validateActivity () {
+    const actArr = getActivity();
+    // let actStr = actArr.toString().split(",")
+    // console.log(actStr)
+
+    if (actArr.length < 3) {
+        document.querySelector("#activityError").textContent = "at least 3 activities";
         console.log("password cant be blank");
         return false;
     }
     else {
-        localStorage.setItem("activities", JSON.stringify(actStr));
-        console.log(allFunAct);
+        localStorage.setItem("activities", JSON.stringify(actArr));
+        // console.log(allFunAct);
         funact.value = " ";
         // funThings = " ";
         return true;
@@ -168,7 +187,7 @@ function regFunction(e) {
     const userIsValid = getUsername();
     const nameIsValid = getName();
     const pwdIsvalid =  getPwd();
-    const activityIsValid = activity();
+    const activityIsValid = validateActivity();
 
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid) {
         window.location.href = "dashboard.html";
