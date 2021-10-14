@@ -1,3 +1,5 @@
+// TODO: change constant variable definitions from let to const
+// minimize use of global variables like pwdIsvalid unless necessary and accessed by multiple functions
 let fname = document.querySelector("#name");
 let user = document.querySelector("#username");
 let pwd = document.querySelector("#passwd");
@@ -160,6 +162,7 @@ function getActivity() {
 }
 
 function regFunction(e) {
+    // TODO: use assignment and return value from the functions to get nameIsValid and co
     getUsername();
     getName();
     getPwd();
