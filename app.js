@@ -92,7 +92,6 @@ function getUsername() {
         console.log("only letters allowed");
         return false
     }
-        // user.value = "";
 }
 
 function onblurPwd() {
@@ -342,6 +341,7 @@ function show_Schedule() {
     else {
         alert("choose some days");
     }
+  
 }
 
 // function newScheduleFn(){
