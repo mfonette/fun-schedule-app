@@ -9,6 +9,7 @@ const funact = document.querySelector("#funActivities");
 const reg = document.querySelector("#register");
 let allFunAct = [];
 
+const login = document.querySelector("#login")
 const newSchedule = document.querySelector(".newschedule");
 const newestSchedule = document.querySelector(".createNewSchedule")
 const allActivities = document.querySelector("#activityDiv"); 
@@ -18,6 +19,10 @@ const addFun = document.querySelector("#addActivities");
 
 if (reg) {
     reg.addEventListener("click", regFunction);
+}
+
+if (login) {
+    login.addEventListener("click", loginfn);
 }
 
 if (newSchedule) {
@@ -37,6 +42,24 @@ if (newSchedule) {
 
 // addFun.addEventListener("click", showAddedActivity);
 
+function loginfn() {
+    const regUser = getUsername();
+    const regpaswd = getPwd();
+    const loginPasswd = document.querySelector("#loginPasswd");
+    const loginUsername = document.querySelector("#loginUsername");
+
+    if(loginUsername === regUser && loginPasswd === regpaswd){
+        window.location.href = "dashboard.html";
+        console.log("login is fine");
+        return true;
+    }
+
+    else {
+        alert('incorrect username or password');
+    }
+    
+}
+
 function focusFunction() {
     Array.from(document.querySelectorAll('.formError')).forEach(elm => {
         elm.innerHTML = "";
@@ -55,7 +78,6 @@ function onblurName() {
 
 function getName() {
     onblurName();
-    // let nameIsValid = "";
     console.log(fullName);
     let regExp = (/^[A-Za-z\s]+$/);
 
@@ -83,7 +105,7 @@ function onblurUsername() {
 
 function getUsername() {
     onblurUsername();
-    console.log(userName);
+    // console.log(userName);
     let regexp = (/^[A-Za-z]+$/);
     if (userName.match(regexp)) {
         localStorage.setItem("username", JSON.stringify(userName));
@@ -125,62 +147,35 @@ function getPwd() {
 
 }
 
-// function activity() {
-//     let funThings = funact.value;
-//     // if (funThings.length === 0) {
-//     //     document.querySelector("#activityError").innerHTML = "at least 3 activities"
-//     //     console.log( "password cant be blank")
-//     //     // alert("name cant be blank")
-//     // }
-//     // console.log(funThings.split(','))
-//     allFunAct.push(funThings);
-//     let actStr = allFunAct.toString().split(",")
-//     console.log(actStr)
-
-//     if (actStr.length < 3) {
-//         document.querySelector("#activityError").innerHTML = "at least 3 activities";
-//         console.log("password cant be blank");
-//         return false;
-//     }
-//     else {
-//         localStorage.setItem("activities", JSON.stringify(actStr));
-//         console.log(allFunAct);
-//         funact.value = " ";
-//         // funThings = " ";
-//         return true;
-//     }
-// }
-
 function validateActivity () {
     const actArr = getActivity();
-    // let actStr = actArr.toString().split(",")
-    // console.log(actStr)
+    console.log(actArr)
 
     if (actArr.length < 3) {
         document.querySelector("#activityError").textContent = "at least 3 activities";
-        console.log("password cant be blank");
+        console.log("activity cant be blank");
         return false;
     }
     else {
         localStorage.setItem("activities", JSON.stringify(actArr));
-        // console.log(allFunAct);
         funact.value = " ";
-        // funThings = " ";
         return true;
     }
 }
 
 function getActivity() {
-    let actArr = [];
+    let actArr ;
+    // let arrAct = [];
+    let funThings = [];
     let activity = localStorage.getItem("activities");
     if (activity === null) {
         actArr = [];
     }
     else {
         actArr = JSON.parse(activity);
-        // console.log(funObj)
-        // console.log(funObj.toString().split(","))
     }
+    funThings.push(funact.value)
+    actArr = funThings.toString().split(",");
     return actArr;
 }
 
@@ -192,7 +187,7 @@ function regFunction(e) {
     const activityIsValid = validateActivity();
 
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid) {
-        window.location.href = "dashboard.html";
+        window.location.href = "login.html";
         console.log("reg is fine");
         return true;
     }
@@ -487,4 +482,30 @@ function show_Schedule() {
 //     // console.log(firstDay + " " + activity2);
 //     console.log((dayTwoArr))
 //     return dayTwoArr
+// }
+
+// function activity() {
+//     let funThings = funact.value;
+//     // if (funThings.length === 0) {
+//     //     document.querySelector("#activityError").innerHTML = "at least 3 activities"
+//     //     console.log( "password cant be blank")
+//     //     // alert("name cant be blank")
+//     // }
+//     // console.log(funThings.split(','))
+//     allFunAct.push(funThings);
+//     let actStr = allFunAct.toString().split(",")
+//     console.log(actStr)
+
+//     if (actStr.length < 3) {
+//         document.querySelector("#activityError").innerHTML = "at least 3 activities";
+//         console.log("password cant be blank");
+//         return false;
+//     }
+//     else {
+//         localStorage.setItem("activities", JSON.stringify(actStr));
+//         console.log(allFunAct);
+//         funact.value = " ";
+//         // funThings = " ";
+//         return true;
+//     }
 // }
