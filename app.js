@@ -10,7 +10,8 @@ const reg = document.querySelector("#register");
 let allFunAct = [];
 
 const newSchedule = document.querySelector(".newschedule");
-const allActivities = document.querySelector("#activityDiv");
+const newestSchedule = document.querySelector(".createNewSchedule")
+const allActivities = document.querySelector("#activityDiv"); 
 const addFun = document.querySelector("#addActivities");
 // let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 // let delBtn = document.getElementById("delAct");
@@ -21,6 +22,7 @@ if (reg) {
 
 if (newSchedule) {
     newSchedule.addEventListener("click", show_Schedule);
+    newestSchedule.addEventListener("click", show_Schedule);
     allActivities.addEventListener("click", showAllActivity);
     addFun.addEventListener("click", addActivity);
 }

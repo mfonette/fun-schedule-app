@@ -8,6 +8,10 @@
     line-height: 1.5;
 }
 
+body{
+    background-color: #EAEAEA;
+}
+
 .formItem{
     display: flex;
     flex-direction: column;
@@ -73,13 +77,29 @@
     font-weight: bold;
 }
 .small-section{
-    background-color: white;
+    background-color: #2F323A;
     height: 30em;
+    color: white;
 
 }
 .x{
     width: 100em;
+    margin-top: 1px;
 }
+
+.nameSmallSection{
+    text-align: center;
+}
+
+.navbar{
+    height: 100px;
+}
+
+.first {
+    background:#222428;
+    color: white !important;
+}
+
 
 .small-ul{
     list-style-type: none;
@@ -90,15 +110,42 @@
     align-content: center;
 }
 
-.card{
+.cardDiv{
     position: absolute;
     width: 40em;
-    right: -35em;
+    right: -31em;
     top: -25em;
-    background-color:#bd9797 !important;
+    background-color:#D8DADE !important;
 }
 
-.funDay{
-    /* display: none; */
+.day1{
+    position: absolute;
+    background-color:#D8DADE !important;
+    width: 40em;
+    right: -25em;
+    top: -35em;
+    margin-top: 50px;
+ }
+
+.btn {
+    background-color: transparent;
+    color: white;;
+}
+
+.btn:hover {
+    /* background-color: #70CAC5; */
+    background-color: #3C91E6;
+    color: white;
+    text-align:start;
+}
+
+.line{
+    background-color: white;
+}
+
+.btnBig {
+    color: black;
+    border-color: black !important;
+    border-style: solid !important;
 }
 
