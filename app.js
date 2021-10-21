@@ -43,18 +43,24 @@ if (newSchedule) {
 // addFun.addEventListener("click", showAddedActivity);
 
 function loginfn() {
-    const regUser = getUsername();
-    const regpaswd = getPwd();
-    const loginPasswd = document.querySelector("#loginPasswd");
-    const loginUsername = document.querySelector("#loginUsername");
+    // const regUser = getUsername();
+    const regUser = localStorage.getItem("username");
+    const regpaswd = localStorage.getItem("password");
+    console.log(regUser + ","+ regpaswd)
+    // const regpaswd = getPwd();
+    const loginPasswd = document.querySelector("#loginPasswd").value;
+    const loginUsername = document.querySelector("#loginUsername").value;
 
-    if(loginUsername === regUser && loginPasswd === regpaswd){
+    // console.log(loginUsername+ ","+ loginPasswd)
+
+    if(loginUsername.toString() == regUser && loginPasswd.toString() == regpaswd){
         window.location.href = "dashboard.html";
         console.log("login is fine");
         return true;
     }
 
     else {
+        console.log(loginUsername+ ","+ loginPasswd)
         alert('incorrect username or password');
     }
     
@@ -104,14 +110,15 @@ function onblurUsername() {
 }
 
 function getUsername() {
-    onblurUsername();
+    // onblurUsername();
+    userName = user.value;
     // console.log(userName);
     let regexp = (/^[A-Za-z]+$/);
     if (userName.match(regexp)) {
         localStorage.setItem("username", JSON.stringify(userName));
         console.log("user is correct");
         user.value = "";
-        return true
+        return true;
     }
     else {
         document.querySelector("#usernameError").textContent = "only letters allowed";
@@ -122,7 +129,7 @@ function getUsername() {
 
 function onblurPwd() {
     paswd = pwd.value;
-    if (paswd.length === 0) {
+    if (paswd.length === 0) { 
         document.querySelector("#pwdError").textContent = "password cant be blank";
         console.log("password cant be blank");
         // alert("name cant be blank")
@@ -130,7 +137,8 @@ function onblurPwd() {
 }
 
 function getPwd() {
-    onblurPwd();
+    // onblurPwd();
+    paswd = pwd.value;
     let regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
     if (paswd.match(regexp)) {
@@ -174,7 +182,7 @@ function getActivity() {
     else {
         actArr = JSON.parse(activity);
     }
-    funThings.push(funact.value)
+    funThings.push(funact.value);
     actArr = funThings.toString().split(",");
     return actArr;
 }
