@@ -156,11 +156,11 @@ function getPwd() {
 }
 
 function validateActivity () {
-    const actArr = getActivity();
-    let funThings = [];
-    funThings.push(funact.value);
-    actArr = funThings.toString().split(",");
-    console.log(actArr)
+    // const actArr = getActivity();
+    // let funThings = [];
+    // funThings.push(funact.value);
+    const actArr = funact.value.split(",");
+    console.log(actArr);
 
     if (actArr.length < 3) {
         document.querySelector("#activityError").textContent = "at least 3 activities";
