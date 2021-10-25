@@ -37,7 +37,7 @@ if (newSchedule) {
 // document.getElementById('yup').addEventListener("click", newScheduleFn)
 // allActivities.addEventListener("click", showAllActivity);
 // addFun.addEventListener("click", addActivity);
-// delBtn.addEventListener("click", delEachActivity)
+// delBtn.addEventListener("click", delEachActivity) 
 
 
 // addFun.addEventListener("click", showAddedActivity);
@@ -46,14 +46,14 @@ function loginfn() {
     // const regUser = getUsername();
     const regUser = localStorage.getItem("username");
     const regpaswd = localStorage.getItem("password");
-    console.log(regUser + ","+ regpaswd)
+    console.log (typeof regUser + ","+ typeof regpaswd)
     // const regpaswd = getPwd();
     const loginPasswd = document.querySelector("#loginPasswd").value;
     const loginUsername = document.querySelector("#loginUsername").value;
 
-    // console.log(loginUsername+ ","+ loginPasswd)
+    console.log(typeof loginUsername+ ","+typeof loginPasswd)
 
-    if(loginUsername.toString() == regUser && loginPasswd.toString() == regpaswd){
+    if(loginUsername.toString() === regUser && loginPasswd.toString() === regpaswd){
         window.location.href = "dashboard.html";
         console.log("login is fine");
         return true;
