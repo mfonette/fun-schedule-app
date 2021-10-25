@@ -160,6 +160,9 @@ function getPwd() {
 
 function validateActivity () {
     const actArr = getActivity();
+    let funThings = [];
+    funThings.push(funact.value);
+    actArr = funThings.toString().split(",");
     console.log(actArr)
 
     if (actArr.length < 3) {
