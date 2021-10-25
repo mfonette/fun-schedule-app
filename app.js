@@ -157,6 +157,9 @@ function getPwd() {
 
 function validateActivity () {
     const actArr = getActivity();
+    let funThings = [];
+    funThings.push(funact.value);
+    actArr = funThings.toString().split(",");
     console.log(actArr)
 
     if (actArr.length < 3) {
@@ -174,7 +177,6 @@ function validateActivity () {
 function getActivity() {
     let actArr ;
     // let arrAct = [];
-    let funThings = [];
     let activity = localStorage.getItem("activities");
     if (activity === null) {
         actArr = [];
@@ -182,8 +184,6 @@ function getActivity() {
     else {
         actArr = JSON.parse(activity);
     }
-    funThings.push(funact.value);
-    actArr = funThings.toString().split(",");
     return actArr;
 }
 
