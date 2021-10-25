@@ -44,16 +44,16 @@ if (newSchedule) {
 
 function loginfn() {
     // const regUser = getUsername();
-    const regUser = localStorage.getItem("username");
-    const regpaswd = localStorage.getItem("password");
-    console.log(regUser + ","+ regpaswd)
+    const regUser = JSON.parse(localStorage.getItem("username"));
+    const regpaswd = JSON.parse(localStorage.getItem("password"));
     // const regpaswd = getPwd();
     const loginPasswd = document.querySelector("#loginPasswd").value;
     const loginUsername = document.querySelector("#loginUsername").value;
+    console.log(regUser + ","+ regpaswd, typeof loginUsername, typeof loginPasswd);
 
     // console.log(loginUsername+ ","+ loginPasswd)
 
-    if(loginUsername.toString() == regUser && loginPasswd.toString() == regpaswd){
+    if(loginUsername == regUser && loginPasswd == regpaswd){
         window.location.href = "dashboard.html";
         console.log("login is fine");
         return true;
