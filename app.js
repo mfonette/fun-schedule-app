@@ -166,6 +166,7 @@ function getActivities() {
     let actArr;
     // let arrAct = [];
     // let funThings = [];   // console.log(funact.value)
+    // added comment
     let activity = localStorage.getItem("activities");
     if (activity === null) {
         actArr = [];
