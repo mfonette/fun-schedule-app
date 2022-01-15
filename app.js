@@ -260,16 +260,21 @@ function delEachActivity(index) {
 
 function addActivity() {
     console.log('add activity is working')
-    if (addFunActivity.textContent = "Add New Activity") {
+    const inputEl = document.querySelector('#addFunActivities');
+    if (inputEl) {
+        inputEl.style.display = 'inline-block';
+        inputEl.value='';
+    }
+   else if (addFunActivity.textContent = "Add New Activity") {
         // addFunActivity.textContent = "Enter";
         // console.log(addFun.textContent);
         // console.log(addFun.removeEventListener("click", addActivity))
-        let html = `
+        const html = `
         <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
         `;
         document.querySelector(".add").innerHTML = html;
-        addFunActivity.textContent = "Enter";
     }
+    addFunActivity.textContent = "Enter";
     addFunActivity.removeEventListener("click", addActivity);
     addFunActivity.addEventListener("click", showAddedActivity);
     // showAddedActivity();
@@ -374,6 +379,13 @@ function show_Schedule() {
     }
 
 }
+
+
+// const inputEl = document.getElementbyId('addFunActivities');
+// if (inputEl) {
+// inputEl.style.display = 'inline-block'
+// ]
+// else {}
 
 // function newScheduleFn(){
 //     let checkedDays = []
