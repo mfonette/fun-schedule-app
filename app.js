@@ -1,7 +1,3 @@
-// TODO: change constant variable definitions from let to const
-// minimize use of global variables like pwdIsvalid unless necessary and accessed by multiple functions
-// TODO: remove innerHTML and substitute with something more secure except for places that strictly use html
-// Use triple equality/inequality except explicitly required
 const fname = document.querySelector("#name");
 const user = document.querySelector("#username");
 const pwd = document.querySelector("#passwd");
@@ -11,9 +7,9 @@ let allFunAct = [];
 
 const login = document.querySelector("#login")
 const newSchedule = document.querySelector(".newschedule");
-const newestSchedule = document.querySelector(".createNewSchedule")
-const allActivities = document.querySelector("#activityDiv"); 
-const addFun = document.querySelector("#addActivities");
+const newestSchedule = document.querySelector(".createNewSchedule");
+const allActivities = document.querySelector("#activityDiv");
+const addFunActivity = document.querySelector("#addActivities");
 // let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 // let delBtn = document.getElementById("delAct");
 
@@ -29,18 +25,8 @@ if (newSchedule) {
     newSchedule.addEventListener("click", show_Schedule);
     newestSchedule.addEventListener("click", show_Schedule);
     allActivities.addEventListener("click", showAllActivity);
-    addFun.addEventListener("click", addActivity);
+    addFunActivity.addEventListener("click", addActivity);
 }
-// newSchedule.addEventListener("click", newScheduleFn);
-// console.log(fname)
-// console.log(document.getElementById("new"))
-// document.getElementById('yup').addEventListener("click", newScheduleFn)
-// allActivities.addEventListener("click", showAllActivity);
-// addFun.addEventListener("click", addActivity);
-// delBtn.addEventListener("click", delEachActivity) 
-
-
-// addFun.addEventListener("click", showAddedActivity);
 
 function loginfn() {
     // const regUser = getUsername();
@@ -52,22 +38,22 @@ function loginfn() {
     // const regpaswd = getPwd();
     const loginPasswd = document.querySelector("#loginPasswd").value;
     const loginUsername = document.querySelector("#loginUsername").value;
-    console.log(regUser + ","+ regpaswd, typeof loginUsername, typeof loginPasswd);
+    console.log(regUser + "," + regpaswd, typeof loginUsername, typeof loginPasswd);
 
-    console.log(typeof loginUsername+ ","+typeof loginPasswd)
+    console.log(typeof loginUsername + "," + typeof loginPasswd)
 
     // if(loginUsername.toString() === regUser && loginPasswd.toString() === regpaswd){
-    if(loginUsername === regUser && loginPasswd === regpaswd){
+    if (loginUsername === regUser && loginPasswd === regpaswd) {
         window.location.href = "dashboard.html";
         console.log("login is fine");
         return true;
     }
 
     else {
-        console.log(loginUsername+ ","+ loginPasswd)
+        console.log(loginUsername + "," + loginPasswd)
         alert('incorrect username or password');
     }
-    
+
 }
 
 function focusFunction() {
@@ -81,8 +67,7 @@ function onblurName() {
     fullName = fname.value;
     if (fullName.length === 0) {
         document.querySelector("#nameError").textContent = "name cant be blank";
-        console.log("name cant be blank");
-        // alert("name cant be blank")
+        console.log("name cant be blank");          
     }
 }
 
@@ -133,7 +118,7 @@ function getUsername() {
 
 function onblurPwd() {
     paswd = pwd.value;
-    if (paswd.length === 0) { 
+    if (paswd.length === 0) {
         document.querySelector("#pwdError").textContent = "password cant be blank";
         console.log("password cant be blank");
         // alert("name cant be blank")
@@ -149,7 +134,7 @@ function getPwd() {
         localStorage.setItem("password", JSON.stringify(paswd));
         console.log(" password correct");
         pwd.value = " ";
-        return true
+        return true;
     }
     else {
         document.querySelector("#pwdError").textContent = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter";
@@ -158,10 +143,10 @@ function getPwd() {
     }
 }
 
-function validateActivity () {
+function validateActivity() {
     // const actArr = getActivity();
-    // let funThings = [];
-    // funThings.push(funact.value);
+    let funThings = [];
+    funThings.push(funact.value);
     const actArr = funact.value.split(",");
     console.log(actArr);
 
@@ -177,10 +162,10 @@ function validateActivity () {
     }
 }
 
-function getActivity() {
-    let actArr ;
+function getActivities() {
+    let actArr;
     // let arrAct = [];
-    let funThings = [];   // console.log(funact.value)
+    // let funThings = [];   // console.log(funact.value)
     let activity = localStorage.getItem("activities");
     if (activity === null) {
         actArr = [];
@@ -189,8 +174,8 @@ function getActivity() {
         actArr = JSON.parse(activity);
     }
     // console.log(funact.value)
-    funThings.push(funact.value);
-    actArr = funThings.toString().split(",");
+    // funThings.push(funact.value);
+    // actArr = funThings.toString().split(",");
     return actArr;
 }
 
@@ -198,7 +183,7 @@ function regFunction(e) {
     e.preventDefault();
     const userIsValid = getUsername();
     const nameIsValid = getName();
-    const pwdIsvalid =  getPwd();
+    const pwdIsvalid = getPwd();
     const activityIsValid = validateActivity();
 
     if (nameIsValid && userIsValid && pwdIsvalid && activityIsValid) {
@@ -209,8 +194,8 @@ function regFunction(e) {
 }
 
 function showAllActivity() {
-    const actArr = getActivity()
-   
+    const actArr = getActivities()
+
     let html = "";
     actArr.forEach(function (element, index) {
         html += `
@@ -221,12 +206,19 @@ function showAllActivity() {
         `
         console.log(index)
     });
-    html += `
-    <li>
-    <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
-    <div class="add"> </div>
-    </li>
-    `
+    // html += `
+    // <li>
+    // <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
+    // <div class="add"> </div>
+    // </li>
+    // `
+
+    let newHtml = `
+    <button class="btn btn-primary" type="button" >Add</button> 
+     <div class="add"> </div>
+    `;
+
+
     if (actArr.length != 0) {
         // console.log(funStr.length)
         document.getElementById("activity").innerHTML = "";
@@ -237,6 +229,10 @@ function showAllActivity() {
         allActivities.textContent = `click on add button to add some activities`;
     }
 
+    let newListItem = document.createElement('li');
+    newListItem.innerHTML = newHtml
+    document.getElementById("activity").appendChild(newListItem);
+    newListItem.setAttribute("id", "addActivities");
 }
 
 function delEachActivity(index) {
@@ -244,7 +240,7 @@ function delEachActivity(index) {
     //    let delBtn = document.getElementById("delAct");
     let confirmDel = confirm("Delete this note?");
     if (confirmDel === true) {
-        const actArr = getActivity();
+        const actArr = getActivities();
         // console.log(actArr);
         // var idx = stringFun.indexOf(activity1);
         // console.log(idx);
@@ -257,31 +253,34 @@ function delEachActivity(index) {
         // console.log(filteredArr);
         localStorage.setItem("activities", JSON.stringify(actArr));
         // localStorage.setItem("activities", JSON.stringify(filteredArr));
-        showAllActivity();
+        // showAllActivity();
     }
+    showAllActivity();
 }
 
 function addActivity() {
-    if (addFun.textContent = "Add") {
-        addFun.textContent = "Enter";
-        console.log(addFun.textContent);
+    console.log('add activity is working')
+    if (addFunActivity.textContent = "Add New Activity") {
+        // addFunActivity.textContent = "Enter";
+        // console.log(addFun.textContent);
         // console.log(addFun.removeEventListener("click", addActivity))
         let html = `
         <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
         `;
         document.querySelector(".add").innerHTML = html;
+        addFunActivity.textContent = "Enter";
     }
-    addFun.removeEventListener("click", addActivity);
-    addFun.addEventListener("click", showAddedActivity);
+    addFunActivity.removeEventListener("click", addActivity);
+    addFunActivity.addEventListener("click", showAddedActivity);
     // showAddedActivity();
     // console.log(addFun.removeEventListener("click", addActivity))
 }
 
 function showAddedActivity() {
     let text = document.getElementById("addFunActivities");
-    if (addFun.textContent = "Enter") {
-        addFun.textContent = "Add";
-        const actArr = getActivity();
+    if (addFunActivity.textContent = "Enter") {
+        addFunActivity.textContent = "Add New Activity";
+        const actArr = getActivities();
         // let text = document.getElementById("addFunActivities");
         let textValue = text.value;
         console.log(textValue);
@@ -293,8 +292,8 @@ function showAddedActivity() {
         // document.querySelector(".add").innerHTML = " "
         // text.style.display = "none";
     }
-    addFun.removeEventListener("click", showAddedActivity);
-    addFun.addEventListener("click", addActivity);
+    addFunActivity.removeEventListener("click", showAddedActivity);
+    addFunActivity.addEventListener("click", addActivity);
     text.style.display = "none";
     // document.querySelector(".add").style.display = "none";
     showAllActivity();
@@ -323,7 +322,7 @@ function get_selected_days() {
 }
 
 function generate_schedules() {
-    const actArr = getActivity()
+    const actArr = getActivities()
     let selected_days = get_selected_days();
     let final_schedule_arr = []
     if (selected_days === null) {
@@ -373,7 +372,7 @@ function show_Schedule() {
     else {
         alert("choose some days");
     }
-  
+
 }
 
 // function newScheduleFn(){

@@ -150,3 +150,10 @@ color: white;
     border-style: solid !important;
 }
 
+.dropdown-menu{
+    background-color: #D8DADE !important;
+}
+
+.fa-trash {
+    color: black;
+}
