@@ -250,7 +250,6 @@ function delEachActivity(index) {
         //     if (ind !== index) return item
         //     })
         console.log(actArr);
-        // console.log(filteredArr);
         localStorage.setItem("activities", JSON.stringify(actArr));
         // localStorage.setItem("activities", JSON.stringify(filteredArr));
         // showAllActivity();
