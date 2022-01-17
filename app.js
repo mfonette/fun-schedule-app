@@ -20,7 +20,17 @@ if (login) {
     login.addEventListener("click", loginfn);
     fname.addEventListener('blur', onblurInput);
     user.addEventListener('blur', onblurInput);
+    // dont forget if you are following this method you have to remove onblur that is attached in the index.html               
 }
+
+// if(login) {
+//     login.addEventListener("click", loginfn);
+//             create a unique class and implement it in line 28
+//     Array.from(document.querySelectorAll('.formError')).forEach(elm => {
+//         elm.addEventListener('blur', onblurInput);
+//         console.log("its focus");
+//     });
+// }
 
 if (newSchedule) {
     newSchedule.addEventListener("click", show_Schedule);
@@ -34,9 +44,10 @@ const getItemFromStorage = (itemName) => {
 }
 
 const onblurInput = (evt) => {
+    const inputElm = evt.target
     const inputValue = evt.target.value;
     if (inputValue.length === 0) {
-        id = evt.target.id || evt.target.getAttribute('placeholder');
+       const id = evt.target.id || evt.target.getAttribute('placeholder');
         document.querySelector("#nameError").textContent = `${id} cant be blank`;
     }
 }
@@ -71,11 +82,12 @@ function focusFunction() {
 }
 
 function onblurName() {
-    fullName = fname.value;
+   const fullName = fname.value;
     if (fullName.length === 0) {
         document.querySelector("#nameError").textContent = "name cant be blank";
         console.log("name cant be blank");
     }
+    // return fullname
 }
 
 function getName() {
