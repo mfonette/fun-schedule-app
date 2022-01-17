@@ -34,9 +34,10 @@ const getItemFromStorage = (itemName) => {
 }
 
 const onblurInput = (evt) => {
-    const inputValue = evt.target.value;
+    const inputEl = evt.target;
+    const inputValue = inputEl.value;
     if (inputValue.length === 0) {
-        id = evt.target.id || evt.target.getAttribute('placeholder');
+        const id = inputEl.id || inputEl.getAttribute('placeholder');
         document.querySelector("#nameError").textContent = `${id} cant be blank`;
     }
 }
@@ -71,28 +72,31 @@ function focusFunction() {
 }
 
 function onblurName() {
-    fullName = fname.value;
+    const fullName = fname.value;
     if (fullName.length === 0) {
         document.querySelector("#nameError").textContent = "name cant be blank";
         console.log("name cant be blank");
     }
+    return fullName;
 }
 
 function getName() {
-    onblurName();
+    const fullName = onblurName();
     console.log(fullName);
-    let regExp = (/^[A-Za-z\s]+$/);
-
-    if (fullName.match(regExp)) {
-        localStorage.setItem("name", JSON.stringify(fullName));
-        console.log("name is correct");
-        fname.value = "";
-        return true;
-    }
-    else {
-        document.querySelector("#nameError").textContent = "only letters allowed";
-        console.log("only letters allowed");
-        return false;
+    if (fullName) {
+        let regExp = (/^[A-Za-z\s]+$/);
+    
+        if (fullName.match(regExp)) {
+            localStorage.setItem("name", JSON.stringify(fullName));
+            console.log("name is correct");
+            fname.value = "";
+            return true;
+        }
+        else {
+            document.querySelector("#nameError").textContent = "only letters allowed";
+            console.log("only letters allowed");
+            return false;
+        }
     }
 }
 
