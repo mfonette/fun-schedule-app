@@ -27,9 +27,13 @@ if (newSchedule) {
     addFunActivity.addEventListener("click", addActivity);
 }
 
+const getItemFromStorage = (itemName) => {
+    return JSON.parse(localStorage.getItem(itemName));
+}
+
 function loginfn() {
-    const regUser = JSON.parse(localStorage.getItem("username"));
-    const regpaswd = JSON.parse(localStorage.getItem("password"));
+    const regUser = getItemFromStorage('username');
+    const regpaswd = getItemFromStorage("password");
     const loginPasswd = document.querySelector("#loginPasswd").value;
     const loginUsername = document.querySelector("#loginUsername").value;
     console.log(regUser + "," + regpaswd, typeof loginUsername, typeof loginPasswd);
