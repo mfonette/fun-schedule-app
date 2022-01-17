@@ -44,10 +44,17 @@ const getItemFromStorage = (itemName) => {
 }
 
 const onblurInput = (evt) => {
+<<<<<<< HEAD
     const inputElm = evt.target
     const inputValue = evt.target.value;
     if (inputValue.length === 0) {
        const id = evt.target.id || evt.target.getAttribute('placeholder');
+=======
+    const inputEl = evt.target;
+    const inputValue = inputEl.value;
+    if (inputValue.length === 0) {
+        const id = inputEl.id || inputEl.getAttribute('placeholder');
+>>>>>>> f50ab49d5688c82219d8c9e6e0cd3c703141132c
         document.querySelector("#nameError").textContent = `${id} cant be blank`;
     }
 }
@@ -82,29 +89,39 @@ function focusFunction() {
 }
 
 function onblurName() {
+<<<<<<< HEAD
    const fullName = fname.value;
+=======
+    const fullName = fname.value;
+>>>>>>> f50ab49d5688c82219d8c9e6e0cd3c703141132c
     if (fullName.length === 0) {
         document.querySelector("#nameError").textContent = "name cant be blank";
         console.log("name cant be blank");
     }
+<<<<<<< HEAD
     // return fullname
+=======
+    return fullName;
+>>>>>>> f50ab49d5688c82219d8c9e6e0cd3c703141132c
 }
 
 function getName() {
-    onblurName();
+    const fullName = onblurName();
     console.log(fullName);
-    let regExp = (/^[A-Za-z\s]+$/);
-
-    if (fullName.match(regExp)) {
-        localStorage.setItem("name", JSON.stringify(fullName));
-        console.log("name is correct");
-        fname.value = "";
-        return true;
-    }
-    else {
-        document.querySelector("#nameError").textContent = "only letters allowed";
-        console.log("only letters allowed");
-        return false;
+    if (fullName) {
+        let regExp = (/^[A-Za-z\s]+$/);
+    
+        if (fullName.match(regExp)) {
+            localStorage.setItem("name", JSON.stringify(fullName));
+            console.log("name is correct");
+            fname.value = "";
+            return true;
+        }
+        else {
+            document.querySelector("#nameError").textContent = "only letters allowed";
+            console.log("only letters allowed");
+            return false;
+        }
     }
 }
 
