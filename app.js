@@ -43,22 +43,6 @@ const getItemFromStorage = (itemName) => {
     return JSON.parse(localStorage.getItem(itemName));
 }
 
-const onblurInput = (evt) => {
-<<<<<<< HEAD
-    const inputElm = evt.target
-    const inputValue = evt.target.value;
-    if (inputValue.length === 0) {
-       const id = evt.target.id || evt.target.getAttribute('placeholder');
-=======
-    const inputEl = evt.target;
-    const inputValue = inputEl.value;
-    if (inputValue.length === 0) {
-        const id = inputEl.id || inputEl.getAttribute('placeholder');
->>>>>>> f50ab49d5688c82219d8c9e6e0cd3c703141132c
-        document.querySelector("#nameError").textContent = `${id} cant be blank`;
-    }
-}
-
 function loginfn() {
     const regUser = getItemFromStorage('username');
     const regpaswd = getItemFromStorage("password");
@@ -88,28 +72,31 @@ function focusFunction() {
     });
 }
 
-function onblurName() {
-<<<<<<< HEAD
-   const fullName = fname.value;
-=======
-    const fullName = fname.value;
->>>>>>> f50ab49d5688c82219d8c9e6e0cd3c703141132c
-    if (fullName.length === 0) {
-        document.querySelector("#nameError").textContent = "name cant be blank";
-        console.log("name cant be blank");
+// function onblurName() {
+//     const fullName = fname.value;
+//     if (fullName.length === 0) {
+//         document.querySelector("#nameError").textContent = "name cant be blank";
+//         console.log("name cant be blank");
+//     }
+//     return fullName;
+// }
+
+const onblurInput = (evt) => {
+    const inputEl = evt.target;
+    const inputValue = inputEl.value;
+    if (inputValue.length === 0) {
+        const id = inputEl.id || inputEl.getAttribute('placeholder');
+        document.querySelector("#nameError").textContent = `${id} cant be blank`;
     }
-<<<<<<< HEAD
-    // return fullname
-=======
-    return fullName;
->>>>>>> f50ab49d5688c82219d8c9e6e0cd3c703141132c
+    return inputValue
 }
 
+
 function getName() {
-    const fullName = onblurName();
+    const fullName = onblurInput(e);
     console.log(fullName);
     if (fullName) {
-        let regExp = (/^[A-Za-z\s]+$/);
+        const regExp = (/^[A-Za-z\s]+$/);
     
         if (fullName.match(regExp)) {
             localStorage.setItem("name", JSON.stringify(fullName));
