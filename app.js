@@ -93,6 +93,7 @@ const onblurInput = (evt) => {
 
 
 function getName() {
+    // what is e? it isn't defined and so it would not work. I expected you to do this :)
     const fullName = onblurInput(e);
     console.log(fullName);
     if (fullName) {
