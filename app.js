@@ -11,7 +11,6 @@ const newestSchedule = document.querySelector(".createNewSchedule");
 const allActivities = document.querySelector("#activityDiv");
 const addFunActivity = document.querySelector("#addActivities");
 // let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
-// let delBtn = document.getElementById("delAct");
 
 if (reg) {
     reg.addEventListener("click", regFunction);
@@ -29,20 +28,14 @@ if (newSchedule) {
 }
 
 function loginfn() {
-    // const regUser = getUsername();
-    // const regUser = localStorage.getItem("username");
-    // const regpaswd = localStorage.getItem("password");
-    // console.log (typeof regUser + ","+ typeof regpaswd)
     const regUser = JSON.parse(localStorage.getItem("username"));
     const regpaswd = JSON.parse(localStorage.getItem("password"));
-    // const regpaswd = getPwd();
     const loginPasswd = document.querySelector("#loginPasswd").value;
     const loginUsername = document.querySelector("#loginUsername").value;
     console.log(regUser + "," + regpaswd, typeof loginUsername, typeof loginPasswd);
 
     console.log(typeof loginUsername + "," + typeof loginPasswd)
 
-    // if(loginUsername.toString() === regUser && loginPasswd.toString() === regpaswd){
     if (loginUsername === regUser && loginPasswd === regpaswd) {
         window.location.href = "dashboard.html";
         console.log("login is fine");
@@ -94,14 +87,12 @@ function onblurUsername() {
     if (userName.length === 0) {
         document.querySelector("#usernameError").textContent = "username cant be blank";
         console.log("username cant be blank");
-        // alert("name cant be blank")
     }
 }
 
 function getUsername() {
     // onblurUsername();
     userName = user.value;
-    // console.log(userName);
     let regexp = (/^[A-Za-z]+$/);
     if (userName.match(regexp)) {
         localStorage.setItem("username", JSON.stringify(userName));
@@ -121,7 +112,6 @@ function onblurPwd() {
     if (paswd.length === 0) {
         document.querySelector("#pwdError").textContent = "password cant be blank";
         console.log("password cant be blank");
-        // alert("name cant be blank")
     }
 }
 
@@ -144,7 +134,6 @@ function getPwd() {
 }
 
 function validateActivity() {
-    // const actArr = getActivity();
     let funThings = [];
     funThings.push(funact.value);
     const actArr = funact.value.split(",");
@@ -164,9 +153,6 @@ function validateActivity() {
 
 function getActivities() {
     let actArr;
-    // let arrAct = [];
-    // let funThings = [];   // console.log(funact.value)
-    // added comment
     let activity = localStorage.getItem("activities");
     if (activity === null) {
         actArr = [];
@@ -174,9 +160,6 @@ function getActivities() {
     else {
         actArr = JSON.parse(activity);
     }
-    // console.log(funact.value)
-    // funThings.push(funact.value);
-    // actArr = funThings.toString().split(",");
     return actArr;
 }
 
@@ -207,53 +190,23 @@ function showAllActivity() {
         `
         console.log(index)
     });
-    // html += `
-    // <li>
-    // <button class="btn btn-primary" id="addActivities" type="button" >Add</button> 
-    // <div class="add"> </div>
-    // </li>
-    // `
-
-    let newHtml = `
-    <button class="btn btn-primary" type="button" >Add</button> 
-     <div class="add"> </div>
-    `;
-
-
     if (actArr.length != 0) {
-        // console.log(funStr.length)
         document.getElementById("activity").innerHTML = "";
         document.getElementById("activity").innerHTML = html;
-        // console.log(document.getElementById("activity").appendChild(list))
     }
     else {
         allActivities.textContent = `click on add button to add some activities`;
     }
-
-    let newListItem = document.createElement('li');
-    newListItem.innerHTML = newHtml
-    document.getElementById("activity").appendChild(newListItem);
-    newListItem.setAttribute("id", "addActivities");
 }
 
 function delEachActivity(index) {
     console.log(typeof index, index);
-    //    let delBtn = document.getElementById("delAct");
     let confirmDel = confirm("Delete this note?");
     if (confirmDel === true) {
         const actArr = getActivities();
-        // console.log(actArr);
-        // var idx = stringFun.indexOf(activity1);
-        // console.log(idx);
         actArr.splice(index, 1);
-        // const filteredArr = actArr.filter((item, ind) =>{
-        //     console.log(ind !== index, ind != index, ind);
-        //     if (ind !== index) return item
-        //     })
         console.log(actArr);
         localStorage.setItem("activities", JSON.stringify(actArr));
-        // localStorage.setItem("activities", JSON.stringify(filteredArr));
-        // showAllActivity();
     }
     showAllActivity();
 }
@@ -266,9 +219,6 @@ function addActivity() {
         inputEl.value='';
     }
    else if (addFunActivity.textContent = "Add New Activity") {
-        // addFunActivity.textContent = "Enter";
-        // console.log(addFun.textContent);
-        // console.log(addFun.removeEventListener("click", addActivity))
         const html = `
         <input type="text" placeholder="fun activities you will love to try out" id="addFunActivities">
         `;
@@ -278,7 +228,6 @@ function addActivity() {
     addFunActivity.removeEventListener("click", addActivity);
     addFunActivity.addEventListener("click", showAddedActivity);
     // showAddedActivity();
-    // console.log(addFun.removeEventListener("click", addActivity))
 }
 
 function showAddedActivity() {
@@ -286,7 +235,6 @@ function showAddedActivity() {
     if (addFunActivity.textContent = "Enter") {
         addFunActivity.textContent = "Add New Activity";
         const actArr = getActivities();
-        // let text = document.getElementById("addFunActivities");
         let textValue = text.value;
         console.log(textValue);
         if (textValue != "") {
@@ -294,20 +242,14 @@ function showAddedActivity() {
             actArr.push(textValue);
         }
         localStorage.setItem("activities", JSON.stringify(actArr));
-        // document.querySelector(".add").innerHTML = " "
-        // text.style.display = "none";
     }
     addFunActivity.removeEventListener("click", showAddedActivity);
     addFunActivity.addEventListener("click", addActivity);
     text.style.display = "none";
-    // document.querySelector(".add").style.display = "none";
-    showAllActivity();
-    // document.querySelector(".add").innerHTML = ""      
+    showAllActivity();   
 }
 
 function generate_random_activity(actArr) {
-    // const actArr = getActivity()
-    // console.log(actArr)
     let activity = actArr[Math.floor(Math.random() * actArr.length)];
     console.log(activity);
     return activity
@@ -319,7 +261,6 @@ function get_selected_days() {
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             checkedDays.push(checkbox.value)
-            // console.log(checkbox.value)
         }
     })
     console.log(checkedDays)
@@ -337,28 +278,22 @@ function generate_schedules() {
         selected_days.forEach(function (selectedDay) {
             let randomActivity = generate_random_activity(actArr);
             let idx = actArr.indexOf(randomActivity);
-            // console.log(idx);
             actArr.splice(idx, 1);
             console.log(actArr);
-            // console.log(selectedDay)
-            // console.log(randomActivity)
             let schedule_for_a_particular_day = {
                 'name_of_day': selectedDay,
                 'activities': randomActivity
             }
 
             final_schedule_arr.push(schedule_for_a_particular_day);
-            // console.log(final_schedule_arr);
         });
     }
-    // console.log(final_schedule_arr);
     return final_schedule_arr;
 }
 
 function show_Schedule() {
     let generated_schedule = generate_schedules();
     let allSchedule = document.querySelector(".funDay");
-    //   let dayOfFun = document.querySelector(".day");
     document.querySelector(".cardDiv").style.display = "none";
     let html = ""
     generated_schedule.forEach(function (schedule) {
@@ -379,159 +314,3 @@ function show_Schedule() {
     }
 
 }
-
-
-// const inputEl = document.getElementbyId('addFunActivities');
-// if (inputEl) {
-// inputEl.style.display = 'inline-block'
-// ]
-// else {}
-
-// function newScheduleFn(){
-//     let checkedDays = []
-//     let checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
-//     checkboxes.forEach(function (checkbox){
-//         if (checkbox.checked) {
-//             checkedDays.push(checkbox.value)
-//             // console.log(checkbox.value)
-//                 }
-//     })
-//     console.log(checkedDays)
-// }
-
-// function newScheduleFn(e) {
-//     let allSchedule = document.querySelector(".funDay")
-//     if ( isChecked1.checked && isChecked2.checked === false && isChecked3.checked == false ){
-//         let firstDay = dayOne();
-//         let dayOfFun = document.querySelector(".day");
-//         document.querySelector(".cd").style.display = "none";
-//         allSchedule.innerHTML = `
-//         <div class="card day1">
-//             <div class="card-body day">
-//                 <h4 class="card-title">${dayOfFun.textContent}</h4>
-//                 <p class="card-text">${firstDay}</p>
-//             </div>
-//         </div>
-//         `
-//     }
-//     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked === false ){
-//         dayOne();
-//     }
-//     else if (isChecked1.checked === false && isChecked2.checked === false && isChecked3.checked){
-//         dayOne();
-//     }
-//     else if (isChecked1.checked && isChecked2.checked && isChecked3.checked === false){ 
-//         // dayTwo();
-//         let secDay = dayTwo()
-
-//         // Array.from(document.querySelectorAll('.day')).forEach(elm => {
-
-//         // });
-//         let dayOfFun = document.querySelector(".day");
-//         document.querySelector(".cd").style.display = "none";
-//         secDay.forEach(elm => {
-//         console.log(elm)
-//         allSchedule.innerHTML += `
-//         <div class="card day1">
-//             <div class="card-body day">
-//                 <h4 class="card-title">${dayOfFun.textContent}</h4>
-//                 <p class="card-text">${elm}</p>
-//             </div>
-//         </div>
-//         `
-//         })
-
-//     }
-//     else if (isChecked1.checked && isChecked2.checked === false && isChecked3.checked) { 
-//         dayTwo();
-//      }
-//     else if (isChecked1.checked === false && isChecked2.checked && isChecked3.checked) { 
-//         dayTwo();
-//     }
-//     else if(isChecked1.checked && isChecked2.checked && isChecked3.checked){
-//         dayThree();
-//     }
-//     else{
-//        console.log('check a box please')
-//     }
-// }
-
-
-// function dayThree() {
-//     const actArr = getActivity()
-//     let activity3 = actArr[Math.floor(Math.random()*actArr.length)];
-//     console.log(activity3);
-
-//     let idx2 = actArr.indexOf(activity3);
-//     console.log(idx2);
-
-//     actArr.splice(idx2, 1);
-//     console.log(actArr);
-
-//     let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
-//     console.log(activity1);
-
-//     var idx = actArr.indexOf(activity1);
-//     console.log(idx);
-//     actArr.splice(idx, 1);
-//     console.log(actArr);
-
-//     let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
-//     console.log(activity2);
-//     console.log(activity3 + " " + activity1 + " " + activity2);
-// }
-
-// function dayOne() {
-//     const actArr = getActivity()
-//     console.log(actArr)
-//     let activity1 = actArr[Math.floor(Math.random()*actArr.length)];
-//     console.log(activity1);
-//     return activity1
-// }
-
-// function dayTwo() {
-//     const actArr = getActivity()
-//     const dayTwoArr = []
-
-//     const firstDay = dayOne();
-//     var idx = actArr.indexOf(firstDay);
-//     console.log(idx);
-//     actArr.splice(idx, 1);
-//     console.log(actArr);
-
-//     let activity2 = actArr[Math.floor(Math.random()*actArr.length)];
-//     console.log(activity2);
-
-//     dayTwoArr.push(firstDay);
-//     dayTwoArr.push(activity2);
-
-//     // console.log(firstDay + " " + activity2);
-//     console.log((dayTwoArr))
-//     return dayTwoArr
-// }
-
-// function activity() {
-//     let funThings = funact.value;
-//     // if (funThings.length === 0) {
-//     //     document.querySelector("#activityError").innerHTML = "at least 3 activities"
-//     //     console.log( "password cant be blank")
-//     //     // alert("name cant be blank")
-//     // }
-//     // console.log(funThings.split(','))
-//     allFunAct.push(funThings);
-//     let actStr = allFunAct.toString().split(",")
-//     console.log(actStr)
-
-//     if (actStr.length < 3) {
-//         document.querySelector("#activityError").innerHTML = "at least 3 activities";
-//         console.log("password cant be blank");
-//         return false;
-//     }
-//     else {
-//         localStorage.setItem("activities", JSON.stringify(actStr));
-//         console.log(allFunAct);
-//         funact.value = " ";
-//         // funThings = " ";
-//         return true;
-//     }
-// }
