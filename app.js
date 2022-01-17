@@ -18,6 +18,8 @@ if (reg) {
 
 if (login) {
     login.addEventListener("click", loginfn);
+    fname.addEventListener('blur', onblurInput);
+    user.addEventListener('blur', onblurInput);
 }
 
 if (newSchedule) {
@@ -29,6 +31,14 @@ if (newSchedule) {
 
 const getItemFromStorage = (itemName) => {
     return JSON.parse(localStorage.getItem(itemName));
+}
+
+const onblurInput = (evt) => {
+    const inputValue = evt.target.value;
+    if (inputValue.length === 0) {
+        id = evt.target.id || evt.target.getAttribute('placeholder');
+        document.querySelector("#nameError").textContent = `${id} cant be blank`;
+    }
 }
 
 function loginfn() {
@@ -64,7 +74,7 @@ function onblurName() {
     fullName = fname.value;
     if (fullName.length === 0) {
         document.querySelector("#nameError").textContent = "name cant be blank";
-        console.log("name cant be blank");          
+        console.log("name cant be blank");
     }
 }
 
