@@ -84,6 +84,7 @@ function focusFunction() {
 const onblurInput = (evt) => {
     const inputEl = evt.target;
     const inputValue = inputEl.value;
+    console.log(inputValue);
     if (inputValue.length === 0) {
         const id = inputEl.id || inputEl.getAttribute('placeholder');
         document.querySelector("#nameError").textContent = `${id} cant be blank`;
@@ -94,7 +95,9 @@ const onblurInput = (evt) => {
 
 function getName() {
     // what is e? it isn't defined and so it would not work. I expected you to do this :)
-    const fullName = onblurInput();
+    const e = {target: fname}; 
+    const fullName = onblurInput(e);
+    console.log(e)
     console.log(fullName);
     if (fullName) {
         const regExp = (/^[A-Za-z\s]+$/);
