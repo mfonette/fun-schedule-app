@@ -12,17 +12,6 @@ const allActivities = document.querySelector("#activityDiv");
 const addFunActivity = document.querySelector("#addActivities");
 // let navbar = Array.from(document.querySelectorAll('#navbar>ul>li'))
 
-if (reg) {
-    reg.addEventListener("click", regFunction);
-}
-
-if (login) {
-    login.addEventListener("click", loginfn);
-    fname.addEventListener('blur', onblurInput);
-    user.addEventListener('blur', onblurInput);
-    // dont forget if you are following this method you have to remove onblur that is attached in the index.html               
-}
-
 // if(login) {
 //     login.addEventListener("click", loginfn);
 //             create a unique class and implement it in line 28
@@ -82,11 +71,12 @@ function focusFunction() {
 // }
 
 const onblurInput = (evt) => {
+    console.log("onblur");
     const inputEl = evt.target;
     const inputValue = inputEl.value;
     if (inputValue.length === 0) {
         const id = inputEl.id || inputEl.getAttribute('placeholder');
-        document.querySelector("#nameError").textContent = `${id} cant be blank`;
+        document.querySelector(`#${id}Error`).textContent = `${id} cant be blank`;
     }
     return inputValue
 }
@@ -345,4 +335,16 @@ function show_Schedule() {
         alert("choose some days");
     }
 
+}
+
+if (reg) {
+    reg.addEventListener("click", regFunction);
+    fname.addEventListener('blur', onblurInput);
+    user.addEventListener('blur', onblurInput);
+    pwd.addEventListener('blur', onblurInput);
+}
+
+if (login) {
+    login.addEventListener("click", loginfn);
+    // dont forget if you are following this method you have to remove onblur that is attached in the index.html               
 }
