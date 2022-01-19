@@ -94,13 +94,13 @@ const onblurInput = (evt) => {
 
 function getName() {
     // what is e? it isn't defined and so it would not work. I expected you to do this :)
-    const fullName = onblurInput(e);
+    const fullName = onblurInput();
     console.log(fullName);
     if (fullName) {
         const regExp = (/^[A-Za-z\s]+$/);
     
         if (fullName.match(regExp)) {
-            localStorage.setItem("name", JSON.stringify(fullName));
+            localStorage.setItem("name", JSON.stringify (fullName));
             console.log("name is correct");
             fname.value = "";
             return true;
